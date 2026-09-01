@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="爱奇艺 AI 影视创作 Agent：面向武打戏生成的垂直工作流、六项 Skill 与评测体系设计。" />
+    <title>06 · AI 影视创作 Agent — Jean Zhu</title>
+    <link rel="stylesheet" href="./project-shared.css" />
+  </head>
+  <body class="theme-iqiyi">
+    <div class="scroll-progress" aria-hidden="true"></div>
+    <header class="project-header">
+      <a class="project-header__back" href="../index.html#work" aria-label="返回作品集">← 返回作品集</a>
+      <p class="project-header__mark">Jean Zhu · Project 06 / 09</p>
+      <a class="project-header__next" href="./project-08.html"><span>下一个项目</span> ↗</a>
+    </header>
+
+    <main class="project-main">
+      <section class="project-hero">
+        <div class="project-hero__shell">
+          <div class="project-hero__copy" data-reveal>
+            <div>
+              <p class="eyebrow">AI Product · AIGC Workflow</p>
+              <h1>Fight Scene Agent</h1>
+              <p class="project-hero__dek">把武术指导与动作导演的专业工作流，转译成可被模型执行、可被评测、可持续迭代的影视创作 Agent。</p>
+            </div>
+            <dl class="project-facts">
+              <div><dt>Company</dt><dd>爱奇艺 · 纳逗 Pro</dd></div>
+              <div><dt>Role</dt><dd>AI 产品经理</dd></div>
+              <div><dt>Scope</dt><dd>需求 · Skill · 评测</dd></div>
+            </dl>
+          </div>
+          <div class="project-hero__visual agent-hero__visual">
+            <img src="../卡通人物/未命名文件夹/Group%2027.png" width="1200" height="1600" alt="爱奇艺 AI 影视创作 Agent 项目封面" />
+            <p class="project-hero__index" aria-hidden="true">06</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="project-section">
+        <div class="section-intro" data-reveal>
+          <p class="section-number">01 / Overview</p>
+          <div><h2>从“能生成”走向“能采用”</h2><p>古装、动作与仙侠题材对动作连续性、运镜节奏和招式体系都有高要求。项目从平台失败与低分案例入手，聚焦动作单一、镜头衔接生硬、专业性不足三类高价值 bad case。</p></div>
+        </div>
+        <div class="metric-strip" data-reveal>
+          <article><span>Active users</span><strong>1,100+</strong><p>上线后累计服务用户</p></article>
+          <article><span>Task success</span><strong>96%</strong><p>Agent 任务成功率</p></article>
+          <article><span>Core skills</span><strong>6</strong><p>专业工作流模块</p></article>
+          <article><span>Quality score</span><strong>5→7–9</strong><p>Skill 2 四轮迭代后主观评分</p></article>
+        </div>
+        <div class="insight-grid">
+          <article class="insight-card" data-reveal><span>01 / ACTION</span><h3>动作缺少互动</h3><p>通用模型容易生成重复、缓慢或穿模动作，人物之间没有真实攻防关系。</p></article>
+          <article class="insight-card" data-reveal><span>02 / CAMERA</span><h3>节奏与衔接生硬</h3><p>分镜缺少景别逻辑与动作节奏，镜头冲击力不足，难以直接进入制作链路。</p></article>
+          <article class="insight-card" data-reveal><span>03 / EXPERTISE</span><h3>专业知识分散</h3><p>招式与派系容易混乱，经典片段检索依赖跨平台人工搜索，成本高且不可复用。</p></article>
+        </div>
+      </section>
+
+      <section class="project-section project-section--tight">
+        <div class="workflow-board" data-reveal>
+          <div class="workflow-board__head"><h3>Six-Skill Creative Workflow</h3><p>Professional SOP → Executable agent</p></div>
+          <ol class="workflow-steps">
+            <li><b>01</b><strong>剧本解析</strong><small>角色、冲突、场景与动作目标</small></li>
+            <li><b>02</b><strong>武打设计</strong><small>招式体系与攻防逻辑</small></li>
+            <li><b>03</b><strong>分镜运镜</strong><small>景别、机位、节奏与时长</small></li>
+            <li><b>04</b><strong>提示词生成</strong><small>把专业规则结构化注入模型</small></li>
+            <li><b>05</b><strong>参考检索</strong><small>经典片段与动作知识召回</small></li>
+            <li><b>06</b><strong>结果评测</strong><small>对照案例、人工评分与复盘</small></li>
+          </ol>
+        </div>
+      </section>
+
+      <section class="project-section project-section--tight">
+        <div class="section-intro" data-reveal>
+          <p class="section-number">02 / Evaluation</p>
+          <div><h2>把模糊的“好不好”变成可决策的分数</h2><p>评测同时覆盖功能正确性、生成结果质量和工具调用效率。规则校验负责稳定项，人工与 LLM 联合评测负责专业性和连贯性，避免单一指标掩盖真实体验。</p></div>
+        </div>
+        <div class="matrix-grid">
+          <article class="matrix-card" data-reveal><div class="matrix-card__label"><span>Correctness</span><i></i></div><h3>对不对</h3><p>检查 Skill 路由、字段完整性、武打规范与多轮上下文保持，确保 Agent 理解并执行了正确任务。</p></article>
+          <article class="matrix-card" data-reveal><div class="matrix-card__label"><span>Generation</span><i></i></div><h3>好不好</h3><p>从基本质量、内容连贯性与意图还原度评价分镜、视频和提示词是否达到专业可用门槛。</p></article>
+          <article class="matrix-card" data-reveal><div class="matrix-card__label"><span>Efficiency</span><i></i></div><h3>快不快</h3><p>关注工具选择、平均调用次数和错误恢复，让“完成任务”之外的成本与稳定性也进入评价体系。</p></article>
+        </div>
+      </section>
+
+      <section class="project-section project-section--tight">
+        <div class="section-intro" data-reveal>
+          <p class="section-number">03 / Iteration</p>
+          <div><h2>不是堆更多约束，而是找到正确边界</h2><p>Skill 2 是生成链路的核心，早期约 80% 失败案例集中在“分镜→视频生成”。通过六组对照案例，每轮只修改一个变量，逐步将硬约束与软引导分离。</p></div>
+        </div>
+        <div class="agent-timeline">
+          <article data-reveal><time>V1</time><h3>完整参数框架</h3><p>建立六大分镜参数与镜头分组规则，但约束过多导致模型顾此失彼，评分停留在约 5 分。</p></article>
+          <article data-reveal><time>V2</time><h3>补齐行为完整性</h3><p>强调动作起承转合与人物关系，验证“更细”并不等于“更稳”。</p></article>
+          <article data-reveal><time>V3</time><h3>移除慢镜硬约束</h3><p>将慢动作、镜头时长和切换频率改为软引导，避免快节奏场景被强制打断。</p></article>
+          <article data-reveal><time>V4</time><h3>三条核心硬约束</h3><p>只保留动作时序链条、真实物理逻辑与离地借力点；景别和运镜按场景动态组织，最终评分提升至 7–9 分。</p></article>
+        </div>
+      </section>
+
+      <section class="project-section project-section--tight">
+        <div class="boundary-note" data-reveal>
+          <h2>Result & Boundary</h2>
+          <p>Agent 已作为纳逗 Pro 的子 Agent 上线，可自动触发或独立进入。个人工作聚焦于需求归因、六项 Skill 设计、Prompt 迭代和评测框架；模型训练、平台工程与未脱敏业务数据不在本页面展示。项目沉淀的核心方法是：垂直边界越清楚，Agent 的专业价值越可验证。</p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="project-footer" data-reveal><p>Next project · 08 / 09</p><a href="./project-08.html"><strong>AI Episode Review Agent</strong><span aria-hidden="true">↗</span></a></footer>
+    <dialog class="lightbox" aria-label="图片放大预览"><button class="lightbox__close" type="button" aria-label="关闭预览">×</button><img src="" alt="" /></dialog>
+    <script src="./project-shared.js"></script>
+  </body>
+</html>

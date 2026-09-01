@@ -1,0 +1,3195 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#eef2ee" />
+    <meta
+      name="description"
+      content="Jean Zhu 的个人 IP 网站——AI 产品、城市观察与专业工作流。"
+    />
+    <title>Jean Zhu — Personal Portfolio</title>
+    <style>
+      @font-face {
+        font-family: "Jolly Lodger";
+        src: url("./assets/jean-home/JollyLodger-Regular.ttf") format("truetype");
+        font-display: swap;
+        font-style: normal;
+        font-weight: 400;
+      }
+
+      :root {
+        --forest: #496b43;
+        --forest-deep: #173a34;
+        --lower-surface: #163d36;
+        --lower-surface-rgb: 22, 61, 54;
+        --ink: #1d2e29;
+        --paper: #edf1ed;
+        --paper-solid: #f5f6f1;
+        --line: rgba(27, 55, 48, 0.42);
+        --nav-x: clamp(24px, 3.35vw, 68px);
+        --ui-font: "Avenir Next Condensed", "Avenir Next", "Arial Narrow", "PingFang SC",
+          "Microsoft YaHei", sans-serif;
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        min-width: 320px;
+        margin: 0;
+        overflow-x: hidden;
+        color: var(--ink);
+        background: var(--forest-deep);
+        font-family: var(--ui-font);
+        -webkit-font-smoothing: antialiased;
+      }
+
+      button,
+      input {
+        font: inherit;
+      }
+
+      button,
+      a {
+        -webkit-tap-highlight-color: transparent;
+        touch-action: manipulation;
+      }
+
+      button {
+        color: inherit;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      :focus-visible {
+        outline: 2px solid var(--forest-deep);
+        outline-offset: 4px;
+      }
+
+      .sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+      }
+
+      .skip-link {
+        position: fixed;
+        top: 12px;
+        left: 12px;
+        z-index: 100;
+        padding: 10px 14px;
+        border-radius: 999px;
+        background: var(--forest-deep);
+        color: #fff;
+        font-size: 13px;
+        font-weight: 700;
+        transform: translateY(-150%);
+        transition: transform 160ms ease;
+      }
+
+      .skip-link:focus {
+        transform: translateY(0);
+      }
+
+      .topbar {
+        position: fixed;
+        inset: 0 0 auto;
+        z-index: 50;
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        min-height: 86px;
+        padding: 34px var(--nav-x) 20px;
+        background: linear-gradient(to bottom, rgba(246, 247, 243, 0.82), rgba(246, 247, 243, 0));
+        color: #26362d;
+        transition: color 220ms ease, background 220ms ease;
+      }
+
+      .topbar.is-dark {
+        color: #f1f2eb;
+        background: linear-gradient(to bottom, rgba(16, 46, 41, 0.88), rgba(16, 46, 41, 0));
+      }
+
+      .brand-meta,
+      .nav-links {
+        display: flex;
+        align-items: center;
+        white-space: nowrap;
+        font-weight: 760;
+        line-height: 1;
+      }
+
+      .brand-meta {
+        gap: clamp(24px, 2.3vw, 48px);
+        font-family: "Arial Narrow", "Avenir Next Condensed", monospace;
+        font-size: clamp(12px, 0.84vw, 17px);
+        letter-spacing: 0.012em;
+      }
+
+      .brand-meta__city::before {
+        display: inline-block;
+        width: 5px;
+        height: 5px;
+        margin: 0 8px 2px 0;
+        border-radius: 50%;
+        background: currentColor;
+        content: "";
+      }
+
+      .nav-links {
+        gap: clamp(22px, 2vw, 42px);
+        font-size: clamp(14px, 1vw, 20px);
+      }
+
+      .nav-links a,
+      .nav-links button {
+        position: relative;
+        display: inline-flex;
+        align-items: flex-start;
+        min-height: 30px;
+        margin: 0;
+        padding: 0 0 8px;
+        border: 0;
+        background: transparent;
+        cursor: pointer;
+        -webkit-appearance: none;
+        appearance: none;
+        color: inherit;
+        font: inherit;
+        font-weight: 760;
+        line-height: 1;
+      }
+
+      .nav-links a::after,
+      .nav-links button::after {
+        position: absolute;
+        right: 8%;
+        bottom: 0;
+        left: 8%;
+        height: 2px;
+        background: currentColor;
+        content: "";
+        transform: scaleX(0);
+        transition: transform 180ms ease;
+      }
+
+      .nav-links a:hover::after,
+      .nav-links a[aria-current="page"]::after,
+      .nav-links button:hover::after {
+        transform: scaleX(1);
+      }
+
+      .menu-button {
+        display: none;
+        width: 46px;
+        height: 46px;
+        padding: 0;
+        border: 1px solid currentColor;
+        border-radius: 50%;
+        background: rgba(244, 246, 241, 0.62);
+        cursor: pointer;
+      }
+
+      .menu-button span {
+        display: block;
+        width: 17px;
+        height: 1px;
+        margin: 5px auto;
+        background: currentColor;
+        transition: transform 180ms ease;
+      }
+
+      .hero {
+        position: sticky;
+        top: 0;
+        z-index: 0;
+        height: 100vh;
+        height: 100svh;
+        min-height: 600px;
+        isolation: isolate;
+        overflow: hidden;
+        background-color: var(--paper);
+        background-image: url("./assets/jean-home/city-background.png");
+        background-image: image-set(
+          url("./assets/jean-home/city-background.webp") type("image/webp"),
+          url("./assets/jean-home/city-background.png") type("image/png")
+        );
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+      }
+
+      .hero::before {
+        position: absolute;
+        inset: 0;
+        z-index: 1;
+        background-image: radial-gradient(circle, rgba(255, 255, 255, 0.7) 0.75px, transparent 0.85px);
+        background-size: 7px 7px;
+        content: "";
+        opacity: 0.38;
+        pointer-events: none;
+      }
+
+      .hero::after {
+        position: absolute;
+        inset: 0;
+        z-index: 1;
+        background:
+          linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 62%, rgba(242, 245, 240, 0.18)),
+          radial-gradient(circle at 52% 42%, rgba(255, 255, 255, 0), rgba(250, 251, 248, 0.1) 72%);
+        content: "";
+        pointer-events: none;
+      }
+
+      .hero-title {
+        position: absolute;
+        top: clamp(110px, 14.5vh, 168px);
+        right: 2vw;
+        left: 2vw;
+        z-index: 2;
+        margin: 0;
+        color: var(--forest);
+        font-family: "Jolly Lodger", "Arial Narrow", cursive;
+        font-size: clamp(124px, 16vw, 324px);
+        font-weight: 400;
+        letter-spacing: -0.022em;
+        line-height: 0.82;
+        text-align: center;
+        white-space: nowrap;
+        opacity: 0;
+        transform: translateY(30px);
+        animation: title-in 900ms cubic-bezier(0.22, 1, 0.36, 1) 120ms forwards;
+      }
+
+      @keyframes title-in {
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .character-stage {
+        position: absolute;
+        bottom: -1px;
+        left: 57%;
+        z-index: 3;
+        height: min(77.5svh, 860px);
+        aspect-ratio: 4 / 3;
+        transform: translateX(-50%);
+        cursor: default;
+        pointer-events: auto;
+      }
+
+      .character-stage video {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        object-position: center bottom;
+        filter: saturate(0.96) contrast(1.015) drop-shadow(0 22px 25px rgba(37, 47, 40, 0.08));
+        transition: filter 220ms ease;
+      }
+
+      .character-stage.is-sounding video {
+        filter: saturate(1) contrast(1.025) brightness(1.015) drop-shadow(0 24px 28px rgba(37, 47, 40, 0.11));
+      }
+
+      .character-stage video.video-fallback {
+        mix-blend-mode: multiply;
+      }
+
+      .scroll-note {
+        position: absolute;
+        right: var(--nav-x);
+        bottom: 34px;
+        z-index: 4;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        color: rgba(29, 46, 41, 0.74);
+        font-family: "Arial Narrow", monospace;
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        writing-mode: vertical-rl;
+      }
+
+      .scroll-note::after {
+        width: 1px;
+        height: 42px;
+        background: currentColor;
+        content: "";
+        animation: scroll-line 1.7s ease-in-out infinite;
+        transform-origin: top;
+      }
+
+      @keyframes scroll-line {
+        0%, 100% { transform: scaleY(0.35); opacity: 0.45; }
+        50% { transform: scaleY(1); opacity: 1; }
+      }
+
+      .assistant-root {
+        position: fixed;
+        left: clamp(24px, 8.7vw, 178px);
+        bottom: 0;
+        z-index: 70;
+        display: flex;
+        align-items: flex-end;
+        gap: 16px;
+      }
+
+      .assistant-launcher {
+        flex: none;
+        padding: 0;
+        border: 0;
+        background: transparent;
+        cursor: pointer;
+      }
+
+      .assistant-avatar {
+        display: block;
+        width: clamp(76px, 5.9vw, 120px);
+        height: auto;
+        filter: drop-shadow(0 10px 14px rgba(27, 48, 40, 0.12));
+        transform-origin: bottom;
+        transition: transform 220ms cubic-bezier(0.22, 1, 0.36, 1);
+      }
+
+      .assistant-launcher:hover .assistant-avatar {
+        transform: translateY(-4px) rotate(-1deg);
+      }
+
+      .assistant-greeting {
+        position: relative;
+        display: block;
+        width: clamp(300px, 20vw, 360px);
+        min-width: 0;
+        margin-bottom: clamp(46px, 4.8vw, 84px);
+        padding: 12px 22px;
+        border: 1px solid rgba(32, 55, 48, 0.65);
+        border-radius: 13px;
+        background: rgba(239, 245, 241, 0.92);
+        box-shadow: 0 10px 30px rgba(27, 48, 40, 0.07);
+        color: var(--ink);
+        cursor: pointer;
+        font-size: clamp(14px, 1.05vw, 20px);
+        font-weight: 650;
+        line-height: 1.25;
+        text-align: left;
+        backdrop-filter: blur(8px);
+        transition: opacity 180ms ease, transform 180ms ease, visibility 180ms step-end;
+      }
+
+      .assistant-greeting:active,
+      .assistant-launcher:active .assistant-avatar {
+        transform: scale(0.97);
+      }
+
+      .assistant-greeting.is-hidden {
+        visibility: hidden;
+        opacity: 0;
+        pointer-events: none;
+        transform: translateX(-12px) scale(0.96);
+        transition: opacity 180ms ease, transform 180ms ease, visibility 180ms step-start;
+      }
+
+      .assistant-greeting::before,
+      .assistant-greeting::after {
+        position: absolute;
+        left: -12px;
+        bottom: 12px;
+        width: 0;
+        height: 0;
+        border-top: 9px solid transparent;
+        border-right: 12px solid rgba(32, 55, 48, 0.65);
+        border-bottom: 9px solid transparent;
+        content: "";
+      }
+
+      .assistant-greeting::after {
+        left: -10px;
+        border-right-color: rgba(239, 245, 241, 0.98);
+      }
+
+      .assistant-panel {
+        position: absolute;
+        left: 0;
+        bottom: calc(100% + 22px);
+        display: none;
+        width: min(390px, calc(100vw - 48px));
+        max-height: min(610px, calc(100vh - 170px));
+        overflow: hidden;
+        border: 1px solid rgba(22, 55, 49, 0.55);
+        border-radius: 18px;
+        background: rgba(248, 249, 245, 0.96);
+        box-shadow: 0 24px 70px rgba(19, 49, 43, 0.24);
+        backdrop-filter: blur(18px);
+        transform-origin: bottom left;
+      }
+
+      .assistant-panel.is-open {
+        display: grid;
+        grid-template-rows: auto minmax(120px, 1fr) auto auto;
+        animation: panel-in 240ms cubic-bezier(0.22, 1, 0.36, 1);
+      }
+
+      @keyframes panel-in {
+        from { opacity: 0; transform: translateY(12px) scale(0.97); }
+        to { opacity: 1; transform: translateY(0) scale(1); }
+      }
+
+      .assistant-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 16px 16px 14px 18px;
+        border-bottom: 1px solid rgba(22, 55, 49, 0.14);
+      }
+
+      .assistant-header strong,
+      .assistant-header small {
+        display: block;
+      }
+
+      .assistant-header strong {
+        font-size: 14px;
+        letter-spacing: 0.08em;
+      }
+
+      .assistant-header small {
+        margin-top: 2px;
+        color: rgba(29, 46, 41, 0.62);
+        font-size: 11px;
+      }
+
+      .assistant-close {
+        display: grid;
+        width: 44px;
+        height: 44px;
+        place-items: center;
+        padding: 0;
+        border: 0;
+        border-radius: 50%;
+        background: transparent;
+        cursor: pointer;
+        font-size: 24px;
+      }
+
+      .assistant-close:hover {
+        background: rgba(23, 58, 52, 0.08);
+      }
+
+      .assistant-messages {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        min-height: 150px;
+        padding: 16px 18px;
+        overflow-y: auto;
+        overscroll-behavior: contain;
+      }
+
+      .message {
+        max-width: 88%;
+        margin: 0;
+        padding: 10px 12px;
+        border-radius: 14px;
+        font-size: 13px;
+        line-height: 1.55;
+      }
+
+      .message--assistant {
+        align-self: flex-start;
+        border-bottom-left-radius: 4px;
+        background: #e4ece6;
+      }
+
+      .message--user {
+        align-self: flex-end;
+        border-bottom-right-radius: 4px;
+        background: var(--forest-deep);
+        color: #fff;
+      }
+
+      .quick-questions {
+        display: flex;
+        gap: 7px;
+        padding: 0 18px 12px;
+        overflow-x: auto;
+        scrollbar-width: none;
+      }
+
+      .quick-questions::-webkit-scrollbar {
+        display: none;
+      }
+
+      .quick-questions button {
+        flex: none;
+        min-height: 36px;
+        padding: 7px 11px;
+        border: 1px solid rgba(23, 58, 52, 0.28);
+        border-radius: 999px;
+        background: transparent;
+        cursor: pointer;
+        font-size: 11px;
+        transition: background 160ms ease, color 160ms ease;
+      }
+
+      .quick-questions button:hover {
+        background: var(--forest-deep);
+        color: #fff;
+      }
+
+      .assistant-form {
+        display: grid;
+        grid-template-columns: 1fr 44px;
+        gap: 8px;
+        padding: 12px;
+        border-top: 1px solid rgba(22, 55, 49, 0.14);
+      }
+
+      .assistant-form input {
+        min-width: 0;
+        height: 44px;
+        padding: 0 14px;
+        border: 1px solid rgba(23, 58, 52, 0.25);
+        border-radius: 999px;
+        background: #fff;
+        font-size: 13px;
+      }
+
+      .assistant-form button {
+        display: grid;
+        width: 44px;
+        height: 44px;
+        place-items: center;
+        border: 0;
+        border-radius: 50%;
+        background: var(--forest-deep);
+        color: #fff;
+        cursor: pointer;
+        font-size: 18px;
+      }
+
+      .assistant-form button:disabled {
+        cursor: not-allowed;
+        opacity: 0.4;
+      }
+
+      .music-toggle {
+        position: fixed;
+        right: calc(var(--nav-x) + 48px);
+        bottom: 24px;
+        z-index: 65;
+        min-height: 44px;
+        padding: 0 4px;
+        border: 0;
+        background: transparent;
+        color: rgba(29, 46, 41, 0.72);
+        cursor: default;
+        font-family: "Arial Narrow", monospace;
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 0.09em;
+        text-transform: uppercase;
+        pointer-events: none;
+      }
+
+      .music-toggle::before {
+        display: inline-block;
+        width: 7px;
+        height: 7px;
+        margin: 0 7px 1px 0;
+        border: 1px solid currentColor;
+        border-radius: 50%;
+        content: "";
+      }
+
+      .music-toggle.is-playing::before {
+        background: currentColor;
+      }
+
+      .content-shell {
+        position: relative;
+        z-index: 10;
+        margin-top: 0;
+        overflow: hidden;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-bottom: 0;
+        border-radius: clamp(34px, 4vw, 66px) clamp(34px, 4vw, 66px) 0 0;
+        background: rgba(var(--lower-surface-rgb), 0.94);
+        color: #edf0e8;
+        box-shadow:
+          inset 0 1px 0 rgba(255, 255, 255, 0.22),
+          inset 0 18px 48px rgba(255, 255, 255, 0.035);
+        -webkit-backdrop-filter: blur(20px) saturate(135%);
+        backdrop-filter: blur(20px) saturate(135%);
+      }
+
+      .content-shell::before {
+        position: absolute;
+        top: 0;
+        right: 0;
+        left: 0;
+        z-index: 2;
+        height: clamp(82px, 10vw, 156px);
+        border-radius: inherit;
+        background:
+          radial-gradient(ellipse at 24% -30%, rgba(255, 255, 255, 0.21), transparent 53%),
+          linear-gradient(180deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.025) 48%, transparent);
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.28);
+        content: "";
+        pointer-events: none;
+      }
+
+      .content-shell > * {
+        position: relative;
+        z-index: 3;
+      }
+
+      .content-section {
+        min-height: 82vh;
+        padding: clamp(100px, 11vw, 180px) clamp(28px, 7.5vw, 154px);
+        border-bottom: 1px solid rgba(237, 240, 232, 0.14);
+      }
+
+      .section-kicker {
+        margin: 0 0 26px;
+        font-family: "Arial Narrow", monospace;
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+      }
+
+      .content-section h2 {
+        max-width: 1050px;
+        margin: 0;
+        font-size: clamp(46px, 6.6vw, 126px);
+        font-weight: 650;
+        letter-spacing: -0.055em;
+        line-height: 0.95;
+      }
+
+      .content-section h2 em {
+        color: #9bb2a5;
+        font-family: "Jolly Lodger", cursive;
+        font-style: normal;
+        font-weight: 400;
+      }
+
+      #about {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        min-height: 100vh;
+        min-height: 100svh;
+        padding: clamp(92px, 10vh, 112px) clamp(28px, 4.8vw, 92px) clamp(34px, 4.5vh, 56px);
+        overflow: hidden;
+        isolation: isolate;
+        background:
+          radial-gradient(circle at 12% 22%, rgba(191, 218, 198, 0.17), transparent 28%),
+          radial-gradient(circle at 88% 64%, rgba(116, 154, 137, 0.16), transparent 32%),
+          linear-gradient(150deg, #173f37 0%, #10342f 55%, #183e37 100%);
+      }
+
+      #about::before {
+        position: absolute;
+        inset: 0;
+        z-index: -1;
+        background-image:
+          linear-gradient(rgba(255, 255, 255, 0.018) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(255, 255, 255, 0.018) 1px, transparent 1px);
+        background-size: 40px 40px;
+        content: "";
+        opacity: 0.42;
+        -webkit-mask-image: radial-gradient(ellipse at 50% 42%, #000 12%, transparent 74%);
+        mask-image: radial-gradient(ellipse at 50% 42%, #000 12%, transparent 74%);
+      }
+
+      .about-heading {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(280px, 430px);
+        align-items: end;
+        gap: 10px clamp(32px, 5vw, 88px);
+        width: min(1600px, 100%);
+        margin: 0 auto;
+        text-align: left;
+      }
+
+      .about-heading .section-kicker {
+        grid-column: 1 / -1;
+        margin-bottom: 0;
+        color: rgba(237, 240, 232, 0.58);
+      }
+
+      .content-section .about-title {
+        max-width: none;
+        color: #f3f5ee;
+        font-size: clamp(58px, 6.4vw, 112px);
+        letter-spacing: -0.045em;
+        line-height: 0.82;
+        white-space: nowrap;
+      }
+
+      .content-section .about-title em {
+        display: inline-block;
+        color: #a8c0ae;
+      }
+
+      .about-lede {
+        max-width: 430px;
+        margin: 0 0 4px;
+        color: rgba(237, 240, 232, 0.68);
+        font-size: clamp(13px, 0.95vw, 17px);
+        line-height: 1.55;
+      }
+
+      .about-grid {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: clamp(12px, 1.15vw, 20px);
+        width: min(1600px, 100%);
+        margin: clamp(22px, 3.2vh, 34px) auto 0;
+        perspective: 1200px;
+      }
+
+      .skill-card {
+        --card-rotate-x: 0deg;
+        --card-rotate-y: 0deg;
+        --card-shift-x: 0px;
+        --shine-x: 50%;
+        --shine-y: 16%;
+        position: relative;
+        min-width: 0;
+        min-height: 0;
+        padding: clamp(18px, 1.55vw, 26px);
+        overflow: hidden;
+        border: 1px solid rgba(255, 255, 255, 0.46);
+        border-radius: clamp(24px, 1.8vw, 32px);
+        background:
+          linear-gradient(150deg, rgba(244, 250, 244, 0.28), rgba(184, 211, 196, 0.12) 52%, rgba(244, 250, 244, 0.18)),
+          rgba(220, 235, 224, 0.1);
+        box-shadow:
+          0 28px 60px rgba(2, 20, 17, 0.24),
+          inset 0 1px 0 rgba(255, 255, 255, 0.66),
+          inset 0 -1px 0 rgba(255, 255, 255, 0.14);
+        color: #f4f6ef;
+        transform: translate3d(var(--card-shift-x), 0, 0) rotateX(var(--card-rotate-x)) rotateY(var(--card-rotate-y));
+        transform-style: preserve-3d;
+        transition: transform 260ms cubic-bezier(0.2, 0.72, 0.25, 1), border-color 220ms ease, box-shadow 220ms ease;
+        will-change: transform;
+        -webkit-backdrop-filter: blur(24px) saturate(128%);
+        backdrop-filter: blur(24px) saturate(128%);
+      }
+
+      .skill-card::before,
+      .skill-card::after {
+        position: absolute;
+        inset: 0;
+        border-radius: inherit;
+        content: "";
+        pointer-events: none;
+      }
+
+      .skill-card::before {
+        background:
+          linear-gradient(116deg, rgba(255, 255, 255, 0.2), transparent 28%, transparent 72%, rgba(214, 237, 222, 0.12)),
+          radial-gradient(circle at 18% 8%, rgba(255, 255, 255, 0.34), transparent 25%);
+        opacity: 0.72;
+      }
+
+      .skill-card::after {
+        background: radial-gradient(circle 190px at var(--shine-x) var(--shine-y), rgba(255, 255, 255, 0.3), transparent 68%);
+        mix-blend-mode: screen;
+        opacity: 0;
+        transition: opacity 180ms ease;
+      }
+
+      .skill-card.is-parallax-active {
+        border-color: rgba(255, 255, 255, 0.68);
+        box-shadow:
+          0 36px 78px rgba(2, 20, 17, 0.3),
+          inset 0 1px 0 rgba(255, 255, 255, 0.82),
+          inset 0 -1px 0 rgba(255, 255, 255, 0.2);
+      }
+
+      .skill-card.is-parallax-active::after {
+        opacity: 1;
+      }
+
+      .skill-card > * {
+        position: relative;
+        z-index: 1;
+        transform: translateZ(18px);
+      }
+
+      .skill-card__meta {
+        display: grid;
+        grid-template-columns: auto minmax(0, 1fr) auto;
+        align-items: center;
+        gap: 12px;
+        min-height: 30px;
+        margin-bottom: clamp(15px, 1.7vh, 22px);
+        color: #e7eee8;
+        font: 700 10px/1 "Arial Narrow", monospace;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+      }
+
+      .skill-card__index {
+        display: grid;
+        width: 30px;
+        height: 30px;
+        place-items: center;
+        border: 1px solid rgba(255, 255, 255, 0.4);
+        border-radius: 50%;
+        color: #fff;
+        letter-spacing: 0;
+      }
+
+      .skill-card__badge,
+      .skill-item__badge {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid rgba(255, 255, 255, 0.34);
+        border-radius: 999px;
+        background: rgba(239, 246, 239, 0.09);
+        color: #e7eee8;
+        white-space: nowrap;
+      }
+
+      .skill-card__badge {
+        min-height: 28px;
+        padding: 0 10px;
+        font-size: 9px;
+        letter-spacing: 0.08em;
+      }
+
+      .skill-card h3 {
+        min-height: 2.15em;
+        margin: 0;
+        font-size: clamp(21px, 1.55vw, 28px);
+        letter-spacing: -0.035em;
+        line-height: 1.08;
+      }
+
+      .skill-list {
+        display: grid;
+        gap: 0;
+        margin: clamp(13px, 1.8vh, 18px) 0 0;
+        padding: 0;
+        border-top: 1px solid rgba(255, 255, 255, 0.2);
+        list-style: none;
+      }
+
+      .skill-list li {
+        padding: clamp(10px, 1.35vh, 14px) 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+      }
+
+      .skill-list li:last-child {
+        border-bottom: 0;
+      }
+
+      .skill-item__heading {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 10px;
+      }
+
+      .skill-item__heading h4 {
+        margin: 0;
+        font-size: clamp(13px, 0.9vw, 16px);
+        line-height: 1.28;
+      }
+
+      .skill-item__badge {
+        flex: none;
+        min-height: 24px;
+        padding: 0 8px;
+        font-size: 9px;
+      }
+
+      .skill-list p {
+        margin: 5px 0 0;
+        color: #e7eee8;
+        font-size: clamp(11px, 0.74vw, 13px);
+        line-height: 1.48;
+      }
+
+      @media (max-width: 1080px) {
+        #about {
+          justify-content: flex-start;
+          padding-right: clamp(28px, 7.5vw, 72px);
+          padding-bottom: 80px;
+          padding-left: clamp(28px, 7.5vw, 72px);
+        }
+
+        .about-heading {
+          grid-template-columns: 1fr;
+        }
+
+        .about-heading .section-kicker {
+          grid-column: auto;
+        }
+
+        .content-section .about-title {
+          white-space: normal;
+        }
+
+        .about-lede {
+          margin-top: 10px;
+        }
+
+        .about-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .skill-card {
+          min-height: 0;
+        }
+
+        .skill-card h3 {
+          min-height: 0;
+        }
+      }
+
+      #work {
+        position: relative;
+        display: grid;
+        grid-template-columns: minmax(360px, 0.9fr) minmax(560px, 1.1fr);
+        align-items: center;
+        gap: clamp(28px, 3vw, 64px);
+        min-height: 100vh;
+        min-height: 100svh;
+        padding: clamp(100px, 9vh, 134px) clamp(28px, 5vw, 96px) clamp(32px, 4vh, 56px);
+        overflow: hidden;
+        isolation: isolate;
+        background:
+          radial-gradient(circle at 76% 48%, rgba(144, 174, 137, 0.12), transparent 31%),
+          var(--lower-surface);
+      }
+
+      #work::before {
+        position: absolute;
+        inset: 0;
+        z-index: -1;
+        background-image:
+          linear-gradient(rgba(255, 255, 255, 0.018) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(255, 255, 255, 0.018) 1px, transparent 1px);
+        background-size: 38px 38px;
+        content: "";
+        opacity: 0.42;
+        -webkit-mask-image: radial-gradient(circle at 75% 50%, #000, transparent 68%);
+        mask-image: radial-gradient(circle at 75% 50%, #000, transparent 68%);
+      }
+
+      .portfolio-copy {
+        position: relative;
+        z-index: 4;
+        align-self: stretch;
+        min-height: 540px;
+      }
+
+      .portfolio-eyebrow {
+        position: absolute;
+        top: 3%;
+        left: 0;
+        margin: 0;
+        color: rgba(239, 242, 232, 0.68);
+        font-family: "Arial Narrow", monospace;
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+      }
+
+      .portfolio-title {
+        position: absolute;
+        top: 12%;
+        left: 0;
+        z-index: 1;
+        margin: 0;
+        color: #eff2e8;
+        font-family: "Jolly Lodger", cursive;
+        font-size: clamp(106px, 10.6vw, 204px);
+        font-weight: 400;
+        letter-spacing: -0.025em;
+        line-height: 0.68;
+        text-transform: uppercase;
+      }
+
+      .portfolio-title span {
+        display: block;
+      }
+
+      .portfolio-title span + span {
+        margin-top: 0.42em;
+      }
+
+      .portfolio-title em {
+        color: inherit;
+        font-style: normal;
+      }
+
+      .portfolio-jean {
+        position: absolute;
+        top: 29%;
+        bottom: auto;
+        left: 50%;
+        z-index: 3;
+        display: block;
+        width: min(41vw, 560px);
+        height: 76%;
+        object-fit: contain;
+        object-position: center top;
+        filter: drop-shadow(0 34px 34px rgba(4, 18, 8, 0.3));
+        pointer-events: none;
+        transform: translateX(-50%);
+      }
+
+      .portfolio-meta {
+        position: absolute;
+        right: 0;
+        bottom: 2%;
+        z-index: 4;
+        display: grid;
+        justify-items: end;
+        gap: 7px;
+        margin: 0;
+        color: rgba(239, 242, 232, 0.54);
+        font-family: "Arial Narrow", monospace;
+        font-size: 10px;
+        letter-spacing: 0.14em;
+        line-height: 1.4;
+        text-transform: uppercase;
+      }
+
+      .portfolio-showcase {
+        position: relative;
+        z-index: 3;
+        align-self: stretch;
+        display: grid;
+        grid-template-rows: auto minmax(390px, 1fr) auto;
+        min-width: 0;
+        min-height: 540px;
+      }
+
+      .portfolio-showcase__heading {
+        display: flex;
+        align-items: end;
+        justify-content: space-between;
+        gap: 24px;
+        margin: 0 0 18px;
+      }
+
+      .portfolio-showcase__heading p {
+        max-width: 560px;
+        margin: 0;
+        color: #eff2e8;
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: clamp(18px, 1.65vw, 30px);
+        font-style: italic;
+        font-weight: 700;
+        line-height: 1.15;
+        white-space: nowrap;
+      }
+
+      .portfolio-showcase__heading span {
+        flex: none;
+        color: rgba(239, 242, 232, 0.5);
+        font-family: "Arial Narrow", monospace;
+        font-size: 10px;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+      }
+
+      .portfolio-stage {
+        --ring-radius: clamp(260px, 22vw, 340px);
+        position: relative;
+        min-width: 0;
+        min-height: 390px;
+        cursor: grab;
+        perspective: 1450px;
+        perspective-origin: 50% 48%;
+        touch-action: pan-y;
+        user-select: none;
+      }
+
+      .portfolio-stage::after {
+        position: absolute;
+        left: 50%;
+        border-radius: 50%;
+        content: "";
+        pointer-events: none;
+        transform: translateX(-50%);
+      }
+
+      .portfolio-stage::after {
+        top: 76%;
+        width: min(48vw, 700px);
+        height: 16%;
+        background: rgba(2, 12, 4, 0.36);
+        filter: blur(28px);
+      }
+
+      .portfolio-ring {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        z-index: 2;
+        width: 1px;
+        height: 1px;
+        transform: rotateX(-6deg) rotateY(var(--ring-rotation, 0deg));
+        transform-style: preserve-3d;
+        will-change: transform;
+      }
+
+      .portfolio-card {
+        --card-angle: 0deg;
+        --card-scale: 1;
+        --card-lift: 0px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        display: block;
+        width: clamp(142px, 12.2vw, 186px);
+        aspect-ratio: 3 / 4;
+        overflow: hidden;
+        border: 1px solid rgba(239, 242, 232, 0.28);
+        border-radius: clamp(19px, 1.8vw, 30px);
+        background: transparent;
+        box-shadow: 0 24px 46px rgba(3, 14, 6, 0.32);
+        cursor: pointer;
+        transform:
+          translate(-50%, -50%)
+          rotateY(var(--card-angle))
+          translateZ(calc(var(--ring-radius) + var(--card-lift)))
+          scale(var(--card-scale));
+        transform-style: preserve-3d;
+        transition:
+          filter 180ms ease,
+          border-color 180ms ease,
+          box-shadow 220ms ease,
+          transform 240ms cubic-bezier(0.2, 0.8, 0.2, 1);
+        will-change: transform;
+        -webkit-user-drag: none;
+      }
+
+      .portfolio-card img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transform: translateZ(0.2px);
+        pointer-events: none;
+        -webkit-user-drag: none;
+        user-select: none;
+      }
+
+      .portfolio-card::after {
+        position: absolute;
+        inset: 0;
+        border-radius: inherit;
+        background: linear-gradient(112deg, rgba(255, 255, 255, 0.2), transparent 24%, transparent 70%, rgba(0, 0, 0, 0.1));
+        content: "";
+        opacity: 0.18;
+        pointer-events: none;
+        transform: translateZ(0.4px);
+      }
+
+      .portfolio-card[aria-current="true"] {
+        border-color: rgba(239, 242, 232, 0.62);
+      }
+
+      .portfolio-card:hover,
+      .portfolio-card:focus-visible {
+        --card-lift: 14px;
+        --card-scale: 1.045;
+        border-color: rgba(239, 242, 232, 0.9);
+        box-shadow: 0 34px 64px rgba(1, 12, 4, 0.5), 0 0 0 5px rgba(239, 242, 232, 0.07);
+        filter: brightness(1.07) saturate(1.04);
+      }
+
+      .portfolio-card:active {
+        filter: brightness(0.94);
+      }
+
+      .portfolio-stage.is-dragging {
+        cursor: grabbing;
+      }
+
+      .portfolio-stage.is-dragging .portfolio-card {
+        cursor: grabbing;
+      }
+
+      .portfolio-stage.is-dragging .portfolio-ring,
+      .portfolio-stage.is-dragging .portfolio-card {
+        transition: none;
+      }
+
+      .portfolio-card:focus-visible,
+      .portfolio-control:focus-visible {
+        outline: 3px solid #f3f5ec;
+        outline-offset: 5px;
+      }
+
+      .portfolio-controls {
+        position: relative;
+        z-index: 40;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 10px;
+        padding-top: 10px;
+      }
+
+      .portfolio-control {
+        display: grid;
+        place-items: center;
+        min-width: 48px;
+        height: 48px;
+        padding: 0 16px;
+        border: 1px solid rgba(239, 242, 232, 0.36);
+        border-radius: 999px;
+        background: rgba(7, 25, 11, 0.54);
+        color: #f1f4eb;
+        cursor: pointer;
+        font: 700 11px/1 "Arial Narrow", monospace;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        transition: background 160ms ease, color 160ms ease, border-color 160ms ease;
+      }
+
+      .portfolio-control:hover {
+        border-color: #f1f4eb;
+        background: #f1f4eb;
+        color: #17341b;
+      }
+
+      .portfolio-count {
+        min-width: 72px;
+        color: #eff2e8;
+        font-family: "Arial Narrow", monospace;
+        font-size: 11px;
+        font-variant-numeric: tabular-nums;
+        letter-spacing: 0.12em;
+        text-align: center;
+      }
+
+      .portfolio-toast {
+        position: absolute;
+        right: 0;
+        bottom: 68px;
+        z-index: 60;
+        max-width: min(320px, 80vw);
+        padding: 13px 17px;
+        border: 1px solid rgba(239, 242, 232, 0.26);
+        border-radius: 999px;
+        background: rgba(5, 20, 9, 0.92);
+        box-shadow: 0 16px 36px rgba(0, 0, 0, 0.3);
+        color: #f1f4eb;
+        font-size: 12px;
+        line-height: 1.4;
+        opacity: 0;
+        pointer-events: none;
+        transform: translateY(8px);
+        transition: opacity 180ms ease, transform 220ms ease;
+      }
+
+      .portfolio-toast.is-visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      body.project-viewer-open {
+        overflow: hidden;
+      }
+
+      .project-viewer {
+        position: fixed;
+        z-index: 1000;
+        inset: 0;
+        display: grid;
+        grid-template-rows: auto minmax(0, 1fr);
+        padding: 14px;
+        visibility: hidden;
+        background:
+          radial-gradient(circle at 14% 0%, rgba(202, 221, 208, 0.22), transparent 34%),
+          rgba(7, 29, 23, 0.88);
+        backdrop-filter: blur(26px) saturate(125%);
+        -webkit-backdrop-filter: blur(26px) saturate(125%);
+        opacity: 0;
+        pointer-events: none;
+        transform: translateY(24px);
+        transition:
+          opacity 280ms ease,
+          transform 360ms cubic-bezier(0.22, 1, 0.36, 1),
+          visibility 0s linear 360ms;
+      }
+
+      .project-viewer.is-open {
+        visibility: visible;
+        opacity: 1;
+        pointer-events: auto;
+        transform: none;
+        transition-delay: 0s;
+      }
+
+      .project-viewer.is-closing {
+        visibility: hidden;
+        opacity: 0;
+        pointer-events: none;
+        transform: none;
+        transition: none;
+      }
+
+      .project-viewer__bar {
+        min-height: 66px;
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+        align-items: center;
+        gap: 16px;
+        padding: 8px 10px 14px;
+        color: #f2f5ed;
+      }
+
+      .project-viewer__close {
+        width: fit-content;
+        min-height: 44px;
+        display: inline-flex;
+        align-items: center;
+        gap: 9px;
+        padding: 0 16px;
+        border: 1px solid rgba(242, 245, 237, 0.35);
+        border-radius: 999px;
+        color: inherit;
+        background: rgba(242, 245, 237, 0.1);
+        cursor: pointer;
+        font: 700 11px/1 "Arial Narrow", monospace;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        transition: color 180ms ease, background 180ms ease, transform 180ms ease;
+      }
+
+      .project-viewer__close:hover {
+        color: #17341b;
+        background: #f2f5ed;
+        transform: translateX(-2px);
+      }
+
+      .project-viewer__title {
+        max-width: min(50vw, 620px);
+        margin: 0;
+        overflow: hidden;
+        font-size: 12px;
+        font-weight: 750;
+        letter-spacing: 0.13em;
+        text-align: center;
+        text-overflow: ellipsis;
+        text-transform: uppercase;
+        white-space: nowrap;
+      }
+
+      .project-viewer__count {
+        justify-self: end;
+        margin: 0;
+        color: rgba(242, 245, 237, 0.66);
+        font: 700 11px/1 "Arial Narrow", monospace;
+        letter-spacing: 0.16em;
+      }
+
+      .project-viewer__canvas {
+        position: relative;
+        min-height: 0;
+        overflow: hidden;
+        border: 1px solid rgba(255, 255, 255, 0.34);
+        border-radius: 34px;
+        background: #eef0e8;
+        box-shadow: 0 30px 90px rgba(0, 0, 0, 0.36);
+      }
+
+      .project-viewer__loading {
+        position: absolute;
+        z-index: 2;
+        inset: 0;
+        display: grid;
+        place-items: center;
+        color: #315046;
+        background: #eef0e8;
+        font: 700 11px/1 "Arial Narrow", monospace;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        transition: opacity 180ms ease, visibility 180ms ease;
+      }
+
+      .project-viewer__loading::before {
+        position: absolute;
+        width: 34px;
+        height: 34px;
+        margin-top: -52px;
+        border: 2px solid rgba(49, 80, 70, 0.18);
+        border-top-color: #315046;
+        border-radius: 50%;
+        animation: project-viewer-spin 0.8s linear infinite;
+        content: "";
+      }
+
+      .project-viewer.is-loaded .project-viewer__loading {
+        visibility: hidden;
+        opacity: 0;
+      }
+
+      .project-viewer iframe {
+        width: 100%;
+        height: 100%;
+        display: block;
+        border: 0;
+        background: #eef0e8;
+      }
+
+      @keyframes project-viewer-spin {
+        to { transform: rotate(360deg); }
+      }
+
+      @media (max-width: 680px) {
+        .project-viewer {
+          padding: 8px;
+        }
+
+        .project-viewer__bar {
+          min-height: 60px;
+          grid-template-columns: auto minmax(0, 1fr) auto;
+          gap: 9px;
+          padding: 4px 2px 8px;
+        }
+
+        .project-viewer__close {
+          padding: 0 13px;
+        }
+
+        .project-viewer__close span {
+          display: none;
+        }
+
+        .project-viewer__title {
+          max-width: none;
+          font-size: 10px;
+          letter-spacing: 0.08em;
+        }
+
+        .project-viewer__canvas {
+          border-radius: 24px;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .project-viewer,
+        .project-viewer__loading {
+          transition: none;
+        }
+
+        .project-viewer__loading::before {
+          animation: none;
+        }
+      }
+
+      .contact-links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 14px;
+        margin-top: 64px;
+      }
+
+      .contact-links a {
+        display: inline-flex;
+        align-items: center;
+        min-height: 50px;
+        padding: 0 22px;
+        border: 1px solid rgba(237, 240, 232, 0.7);
+        border-radius: 999px;
+        font-size: 14px;
+        font-weight: 700;
+        transition: background 180ms ease, color 180ms ease;
+      }
+
+      .contact-links a:hover {
+        background: #edf0e8;
+        color: var(--forest-deep);
+      }
+
+      #contact {
+        position: relative;
+        display: grid;
+        grid-template-columns: minmax(0, 0.82fr) minmax(520px, 1.18fr);
+        align-items: center;
+        gap: clamp(32px, 4vw, 84px);
+        min-height: 100vh;
+        min-height: 100svh;
+        overflow: hidden;
+      }
+
+      .contact-copy {
+        position: relative;
+        z-index: 2;
+        min-width: 0;
+      }
+
+      .contact-visual {
+        position: relative;
+        align-self: stretch;
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+        min-width: 0;
+        width: 100%;
+        min-height: 620px;
+        pointer-events: none;
+      }
+
+      .contact-visual::before {
+        position: absolute;
+        right: 8%;
+        bottom: 10%;
+        left: 8%;
+        height: 24%;
+        border-radius: 50%;
+        background: radial-gradient(ellipse, rgba(5, 24, 21, 0.28), transparent 70%);
+        filter: blur(12px);
+        content: "";
+      }
+
+      .contact-visual video {
+        position: relative;
+        z-index: 1;
+        display: block;
+        flex: none;
+        width: clamp(820px, 63vw, 1280px);
+        max-width: none;
+        height: auto;
+        margin-bottom: -1.6%;
+        object-fit: contain;
+        filter: saturate(0.96) contrast(1.02) drop-shadow(0 28px 32px rgba(5, 24, 21, 0.18));
+      }
+
+      footer {
+        display: flex;
+        justify-content: space-between;
+        gap: 30px;
+        padding: 32px clamp(28px, 7.5vw, 154px);
+        border-top: 1px solid rgba(237, 240, 232, 0.14);
+        background: var(--lower-surface);
+        color: rgba(237, 240, 232, 0.62);
+        font-size: 11px;
+        letter-spacing: 0.08em;
+      }
+
+      @media (max-width: 980px) {
+        .content-section {
+          scroll-margin-top: 74px;
+        }
+
+        .topbar {
+          align-items: center;
+          min-height: 74px;
+          padding-top: 16px;
+          padding-bottom: 14px;
+        }
+
+        .nav-links {
+          position: absolute;
+          top: 74px;
+          right: 16px;
+          display: none;
+          width: min(280px, calc(100vw - 32px));
+          padding: 14px;
+          border: 1px solid rgba(23, 58, 52, 0.25);
+          border-radius: 16px;
+          background: rgba(248, 249, 245, 0.96);
+          box-shadow: 0 20px 60px rgba(23, 58, 52, 0.16);
+          color: var(--forest-deep);
+          backdrop-filter: blur(18px);
+        }
+
+        .nav-links.is-open {
+          display: grid;
+          gap: 2px;
+        }
+
+        .nav-links a,
+        .nav-links button {
+          min-height: 48px;
+          padding: 0 12px;
+          text-align: left;
+        }
+
+        .menu-button {
+          display: block;
+        }
+
+        .hero-title {
+          top: clamp(112px, 17vh, 155px);
+          font-size: clamp(92px, 14vw, 150px);
+        }
+
+        .character-stage {
+          left: 59%;
+          height: min(72svh, 760px);
+        }
+
+        .assistant-root {
+          left: 22px;
+        }
+
+        .assistant-greeting {
+          min-width: 0;
+        }
+
+        .about-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        #contact {
+          grid-template-columns: 1fr;
+          gap: 40px;
+          padding-bottom: 0;
+        }
+
+        .contact-copy {
+          max-width: 720px;
+        }
+
+        .contact-visual {
+          min-height: min(67vw, 620px);
+          margin-inline: calc(clamp(28px, 7.5vw, 154px) * -1);
+        }
+
+        .contact-visual video {
+          width: min(118vw, 980px);
+        }
+      }
+
+      @media (max-width: 640px) {
+        :root {
+          --nav-x: 18px;
+        }
+
+        .brand-meta {
+          display: grid;
+          gap: 5px;
+          font-size: 10px;
+        }
+
+        .brand-meta__city::before {
+          width: 4px;
+          height: 4px;
+          margin-right: 5px;
+        }
+
+        .hero {
+          min-height: 560px;
+          background-position: 44% center;
+        }
+
+        .hero-title {
+          top: 120px;
+          right: 12px;
+          left: 12px;
+          font-size: clamp(82px, 24vw, 124px);
+          line-height: 0.75;
+          white-space: normal;
+        }
+
+        .hero-title span {
+          display: block;
+        }
+
+        .character-stage {
+          left: 56%;
+          height: min(64svh, 590px);
+        }
+
+        .scroll-note {
+          display: none;
+        }
+
+        .assistant-root {
+          left: 12px;
+        }
+
+        .assistant-avatar {
+          width: 72px;
+        }
+
+        .assistant-launcher {
+          flex: none;
+        }
+
+        .assistant-greeting {
+          min-width: 0;
+          width: min(250px, calc(100vw - 108px));
+          margin-bottom: 38px;
+          padding: 10px 13px;
+          font-size: 12px;
+        }
+
+        .assistant-panel {
+          position: fixed;
+          right: 12px;
+          bottom: 92px;
+          left: 12px;
+          width: auto;
+          max-height: calc(100svh - 116px);
+        }
+
+        .music-toggle {
+          right: 12px;
+          top: 72px;
+          bottom: auto;
+          color: rgba(29, 46, 41, 0.58);
+        }
+
+        .content-section {
+          min-height: auto;
+          padding-top: 96px;
+          padding-bottom: 96px;
+        }
+
+        .about-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .skill-card {
+          min-height: 0;
+          padding: 24px;
+          border-radius: 28px;
+          transform: none;
+          will-change: auto;
+        }
+
+        .skill-card > * {
+          transform: none;
+        }
+
+        #work {
+          padding-top: 112px;
+          padding-right: 20px;
+          padding-left: 20px;
+        }
+
+        #contact {
+          padding-bottom: 0;
+        }
+
+        .contact-links {
+          display: grid;
+          gap: 12px;
+          margin-top: 48px;
+        }
+
+        .contact-links a {
+          width: 100%;
+          justify-content: center;
+        }
+
+        .contact-visual {
+          min-height: 420px;
+          margin-top: 14px;
+          margin-inline: -28px;
+        }
+
+        .contact-visual video {
+          width: 760px;
+        }
+
+        footer {
+          display: grid;
+        }
+      }
+
+      @media (max-width: 1180px) {
+        #work {
+          grid-template-columns: minmax(300px, 0.78fr) minmax(500px, 1.22fr);
+          gap: 18px;
+          padding-right: 32px;
+          padding-left: 32px;
+        }
+
+        .portfolio-title {
+          font-size: clamp(94px, 11vw, 134px);
+        }
+
+        .portfolio-jean {
+          top: 29%;
+          left: 50%;
+          width: min(44vw, 500px);
+          height: 74%;
+        }
+
+        .portfolio-card {
+          width: clamp(140px, 13vw, 168px);
+        }
+      }
+
+      @media (max-width: 900px) {
+        #work {
+          grid-template-columns: 1fr;
+          align-items: stretch;
+          gap: 24px;
+          min-height: auto;
+          padding: 112px 28px 72px;
+        }
+
+        .portfolio-copy {
+          min-height: 510px;
+        }
+
+        .portfolio-eyebrow {
+          top: 0;
+        }
+
+        .portfolio-title {
+          top: 10%;
+          font-size: clamp(110px, 22vw, 180px);
+        }
+
+        .portfolio-title span + span {
+          margin-top: 0.35em;
+        }
+
+        .portfolio-jean {
+          top: auto;
+          bottom: -8%;
+          left: 20%;
+          width: min(55vw, 440px);
+          height: 460px;
+          object-position: center bottom;
+          transform: none;
+        }
+
+        .portfolio-showcase {
+          grid-template-rows: auto minmax(500px, 62vw) auto;
+          min-height: 610px;
+        }
+
+        .portfolio-stage {
+          --ring-radius: clamp(224px, 35vw, 300px);
+        }
+
+        .portfolio-card {
+          width: clamp(142px, 23vw, 184px);
+        }
+      }
+
+      @media (max-width: 640px) {
+        #work {
+          gap: 12px;
+          padding: 104px 16px 64px;
+        }
+
+        .portfolio-copy {
+          min-height: 405px;
+        }
+
+        .portfolio-title {
+          top: 10%;
+          font-size: clamp(82px, 26vw, 118px);
+          line-height: 0.72;
+        }
+
+        .portfolio-title span + span {
+          margin-top: 0.42em;
+        }
+
+        .portfolio-jean {
+          top: auto;
+          bottom: -7%;
+          left: 20%;
+          width: min(72vw, 340px);
+          height: 350px;
+          object-position: center bottom;
+          transform: none;
+        }
+
+        .portfolio-meta {
+          right: 4px;
+          bottom: 2%;
+          font-size: 8px;
+        }
+
+        .portfolio-showcase {
+          grid-template-rows: auto 420px auto;
+          min-height: 530px;
+        }
+
+        .portfolio-showcase__heading {
+          align-items: flex-start;
+          margin-bottom: 8px;
+        }
+
+        .portfolio-showcase__heading p {
+          max-width: 270px;
+          font-size: 18px;
+          white-space: normal;
+        }
+
+        .portfolio-showcase__heading span {
+          max-width: 82px;
+          font-size: 8px;
+          line-height: 1.5;
+          text-align: right;
+        }
+
+        .portfolio-stage {
+          --ring-radius: clamp(188px, 54vw, 218px);
+          min-height: 420px;
+          perspective: 1050px;
+        }
+
+        .portfolio-card {
+          width: clamp(126px, 38vw, 148px);
+          border-radius: 22px;
+        }
+
+        .portfolio-controls {
+          justify-content: center;
+          flex-wrap: wrap;
+        }
+
+        .portfolio-control {
+          min-width: 48px;
+          height: 48px;
+        }
+
+        .portfolio-toast {
+          right: 50%;
+          bottom: 70px;
+          white-space: nowrap;
+          transform: translate(50%, 8px);
+        }
+
+        .portfolio-toast.is-visible {
+          transform: translate(50%, 0);
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto;
+        }
+
+        *,
+        *::before,
+        *::after {
+          animation-duration: 0.01ms !important;
+          animation-iteration-count: 1 !important;
+          scroll-behavior: auto !important;
+          transition-duration: 0.01ms !important;
+        }
+
+        .hero-title {
+          opacity: 1;
+          transform: none;
+        }
+
+        .skill-card,
+        .skill-card > * {
+          transform: none !important;
+          will-change: auto;
+        }
+
+        .skill-card::after {
+          display: none;
+        }
+      }
+
+      @media (prefers-reduced-transparency: reduce) {
+        .skill-card {
+          background: #285149;
+          -webkit-backdrop-filter: none;
+          backdrop-filter: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <a class="skip-link" href="#page-content">跳到主要内容</a>
+    <header class="topbar" id="topbar">
+      <a class="brand-meta" href="#home" aria-label="返回首页">
+        <span class="brand-meta__city">CHANGSHA, CN</span>
+        <span>CENTRAL SOUTH NIVERSITY</span>
+      </a>
+
+      <nav class="nav-links" id="nav-links" aria-label="主要导航">
+        <a href="#home" aria-current="page">首页</a>
+        <a href="#about">关于我</a>
+        <a href="#work">作品集</a>
+        <a href="#contact">联系方式</a>
+        <button type="button" data-open-assistant>数字分身</button>
+      </nav>
+
+      <button class="menu-button" id="menu-button" type="button" aria-label="打开导航" aria-expanded="false">
+        <span></span>
+        <span></span>
+      </button>
+    </header>
+
+    <main>
+      <section class="hero" id="home" aria-labelledby="hero-title">
+        <h1 class="hero-title" id="hero-title"><span>Hi, I’m </span><span>JEAN ZHU</span></h1>
+
+        <div class="character-stage" aria-label="Jean 的 3D 潮玩动态形象">
+          <video
+            id="character-video"
+            autoplay
+            muted
+            loop
+            playsinline
+            preload="auto"
+            poster="./assets/jean-home/jean-poster.png"
+            aria-hidden="true"
+          >
+            <source src="./assets/jean-home/jean-transparent.webm" type="video/webm; codecs=vp9" />
+            <source src="./卡通人物/主页视频.mp4" type="video/mp4" />
+          </video>
+        </div>
+
+        <div class="scroll-note" aria-hidden="true">scroll</div>
+      </section>
+
+      <div class="content-shell" id="page-content">
+        <section class="content-section" id="about" aria-labelledby="about-title">
+          <header class="about-heading">
+            <p class="section-kicker">01 / ABOUT JEAN</p>
+            <h2 class="about-title" id="about-title">CAPABILITY <em>MAP</em></h2>
+            <p class="about-lede">按“能做什么”组织能力，不用百分比包装经验。</p>
+          </header>
+
+          <div class="about-grid" data-skill-grid>
+            <article class="skill-card" data-skill-card>
+              <header class="skill-card__meta">
+                <span class="skill-card__index">01</span>
+                <span>AI PRODUCT</span>
+                <span class="skill-card__badge">核心</span>
+              </header>
+              <h3>AI 产品能力</h3>
+              <ul class="skill-list">
+                <li>
+                  <div class="skill-item__heading">
+                    <h4>Agent 工作流设计</h4>
+                    <span class="skill-item__badge">熟练</span>
+                  </div>
+                  <p>把专业判断拆解为模型、工具、规则与人工复核能够协作的产品链路。</p>
+                </li>
+                <li>
+                  <div class="skill-item__heading">
+                    <h4>Prompt 与评测体系</h4>
+                    <span class="skill-item__badge">熟练</span>
+                  </div>
+                  <p>通过 Bad Case 归因、版本对比和结构化指标持续校准输出质量。</p>
+                </li>
+                <li>
+                  <div class="skill-item__heading">
+                    <h4>多模态产品设计</h4>
+                    <span class="skill-item__badge">熟练</span>
+                  </div>
+                  <p>覆盖视频理解、画面证据、内容安全、专业生成与质量验收场景。</p>
+                </li>
+                <li>
+                  <div class="skill-item__heading">
+                    <h4>知识库与 CMS</h4>
+                    <span class="skill-item__badge">运用中</span>
+                  </div>
+                  <p>围绕知识召回、内容配置、多语言接入与运营管理设计产品机制。</p>
+                </li>
+              </ul>
+            </article>
+
+            <article class="skill-card" data-skill-card>
+              <header class="skill-card__meta">
+                <span class="skill-card__index">02</span>
+                <span>PRODUCT METHOD</span>
+                <span class="skill-card__badge">方法</span>
+              </header>
+              <h3>产品设计与方法</h3>
+              <ul class="skill-list">
+                <li>
+                  <div class="skill-item__heading">
+                    <h4>需求与场景拆解</h4>
+                    <span class="skill-item__badge">熟练</span>
+                  </div>
+                  <p>从用户任务和专业 workflow 出发，识别真正需要被产品化的判断。</p>
+                </li>
+                <li>
+                  <div class="skill-item__heading">
+                    <h4>产品方案与推进</h4>
+                    <span class="skill-item__badge">熟练</span>
+                  </div>
+                  <p>独立完成 Agent、CMS 与增长产品的方案设计、协作推进和迭代。</p>
+                </li>
+                <li>
+                  <div class="skill-item__heading">
+                    <h4>指标与实验</h4>
+                    <span class="skill-item__badge">熟练</span>
+                  </div>
+                  <p>用召回率、完成率、任务成功率、转化与时效验证方案是否成立。</p>
+                </li>
+                <li>
+                  <div class="skill-item__heading">
+                    <h4>复杂流程表达</h4>
+                    <span class="skill-item__badge">熟练</span>
+                  </div>
+                  <p>将抽象策略转化为清晰的流程、规则、页面和可验收结果。</p>
+                </li>
+              </ul>
+            </article>
+
+            <article class="skill-card" data-skill-card>
+              <header class="skill-card__meta">
+                <span class="skill-card__index">03</span>
+                <span>EXPERIENCE</span>
+                <span class="skill-card__badge">实践</span>
+              </header>
+              <h3>项目与业务经历</h3>
+              <ul class="skill-list">
+                <li>
+                  <div class="skill-item__heading">
+                    <h4>百度 · AIGC 产品</h4>
+                    <span class="skill-item__badge">AI 产品经理实习生</span>
+                  </div>
+                  <p>参与短剧成片审查 Agent，服务规模化 AIGC 漫剧生产与验收。</p>
+                </li>
+                <li>
+                  <div class="skill-item__heading">
+                    <h4>爱奇艺 · 智能平台</h4>
+                    <span class="skill-item__badge">AI 产品经理实习生</span>
+                  </div>
+                  <p>设计 AI 视频武打戏 Agent，将导演工作流转译为可执行能力。</p>
+                </li>
+                <li>
+                  <div class="skill-item__heading">
+                    <h4>芒果 TV—山海</h4>
+                    <span class="skill-item__badge">AI 产品经理实习生</span>
+                  </div>
+                  <p>完善博物馆数字人、知识库、CMS 与多馆快速接入体验。</p>
+                </li>
+                <li>
+                  <div class="skill-item__heading">
+                    <h4>专业工作流产品化</h4>
+                    <span class="skill-item__badge">持续实践</span>
+                  </div>
+                  <p>关注生成式 AI 如何进入影视、内容生产与专业创作流程。</p>
+                </li>
+              </ul>
+            </article>
+
+            <article class="skill-card" data-skill-card>
+              <header class="skill-card__meta">
+                <span class="skill-card__index">04</span>
+                <span>BACKGROUND</span>
+                <span class="skill-card__badge">基础</span>
+              </header>
+              <h3>专业背景 &amp; 工具</h3>
+              <ul class="skill-list">
+                <li>
+                  <div class="skill-item__heading">
+                    <h4>城市设计（交通）</h4>
+                    <span class="skill-item__badge">硕士在读</span>
+                  </div>
+                  <p>中南大学 2024—2027，学业成绩前 5%。</p>
+                </li>
+                <li>
+                  <div class="skill-item__heading">
+                    <h4>系统与空间观察</h4>
+                    <span class="skill-item__badge">熟练</span>
+                  </div>
+                  <p>从系统、空间和人的关系出发理解复杂场景与利益相关方。</p>
+                </li>
+                <li>
+                  <div class="skill-item__heading">
+                    <h4>产品与协作工具</h4>
+                    <span class="skill-item__badge">熟练</span>
+                  </div>
+                  <p>围绕原型、流程、文档、数据分析与跨团队协作完成产品交付。</p>
+                </li>
+                <li>
+                  <div class="skill-item__heading">
+                    <h4>生成式 AI</h4>
+                    <span class="skill-item__badge">持续实践</span>
+                  </div>
+                  <p>关注多模态模型、Agent Skills、AIGC 视频与专业知识的结合。</p>
+                </li>
+              </ul>
+            </article>
+          </div>
+        </section>
+
+        <section id="work" aria-labelledby="work-title">
+          <div class="portfolio-copy">
+            <p class="portfolio-eyebrow">02 / SELECTED WORK · 2023—2026</p>
+            <h2 class="portfolio-title" id="work-title">
+              <span>Portfolio</span>
+              <span>Look <em>Here</em></span>
+            </h2>
+            <img
+              class="portfolio-jean"
+              src="./assets/jean-home/work-center-default-v2.png"
+              width="1536"
+              height="1536"
+              alt=""
+              aria-hidden="true"
+              decoding="async"
+              loading="lazy"
+            />
+            <p class="portfolio-meta">
+              <span>AI Product × Urban Design</span>
+              <span>Changsha, CN</span>
+            </p>
+          </div>
+
+          <div class="portfolio-showcase" aria-roledescription="carousel" aria-label="Jean 的精选作品">
+            <div class="portfolio-showcase__heading">
+              <p>PM Experience and City / Architect Design</p>
+              <span>Hover to pause · Drag to spin</span>
+            </div>
+
+            <div class="portfolio-stage" id="portfolio-stage" aria-label="可拖动旋转的 3D 作品环">
+              <div class="portfolio-ring" id="portfolio-ring">
+                <a class="portfolio-card" href="./projects/project-01.html" data-project="0" aria-label="查看 Breath Arts Center Design 项目">
+                  <img src="./卡通人物/未命名文件夹/Group%2022.png" width="1200" height="1600" alt="Breath Arts Center Design 项目封面" draggable="false" decoding="async" loading="lazy" />
+                </a>
+                <a class="portfolio-card" href="./projects/project-02.html" data-project="1" aria-label="查看 Red-Roof Memories 项目">
+                  <img src="./卡通人物/未命名文件夹/Group%2023.png" width="1200" height="1600" alt="Red-Roof Memories 红顶记忆住宅设计项目封面" draggable="false" decoding="async" loading="lazy" />
+                </a>
+                <a class="portfolio-card" href="./projects/project-03.html" data-project="2" aria-label="查看 Retracing the Past: Historic District 项目">
+                  <img src="./卡通人物/未命名文件夹/Group%2024.png" width="1200" height="1600" alt="历史文化街区规划设计项目封面" draggable="false" decoding="async" loading="lazy" />
+                </a>
+                <a class="portfolio-card" href="./projects/project-04.html" data-project="3" aria-label="查看 Sustainable Future City Design 项目">
+                  <img src="./卡通人物/未命名文件夹/Group%2025.png" width="1200" height="1600" alt="可持续发展城市设计项目封面" draggable="false" decoding="async" loading="lazy" />
+                </a>
+                <a class="portfolio-card" href="./projects/project-05.html" data-project="4" aria-label="查看 Smart Market Research Design 项目">
+                  <img src="./卡通人物/未命名文件夹/Group%2026.png" width="1200" height="1600" alt="智慧化市场调研设计项目封面" draggable="false" decoding="async" loading="lazy" />
+                </a>
+                <a class="portfolio-card" href="./projects/project-06.html" data-project="5" aria-label="查看爱奇艺 AI 影视创作 Agent 项目">
+                  <img src="./卡通人物/未命名文件夹/Group%2027.png" width="1200" height="1600" alt="爱奇艺专业 AI 影视创作平台武打戏增强 Agent 项目封面" draggable="false" decoding="async" loading="lazy" />
+                </a>
+                <a class="portfolio-card" href="./projects/project-07.html" data-project="6" aria-label="查看芒果山海 App 博物馆数字人项目">
+                  <img src="./卡通人物/未命名文件夹/Group%2028.png" width="1200" height="1600" alt="芒果山海 App 博物馆讲解数字人项目封面" draggable="false" decoding="async" loading="lazy" />
+                </a>
+                <a class="portfolio-card" href="./projects/project-08.html" data-project="7" aria-label="查看百度 AI 漫剧成片审查 Agent 项目">
+                  <img src="./卡通人物/未命名文件夹/Group%2029.png" width="1200" height="1600" alt="百度 AI 漫剧成片审查 Agent 项目封面" draggable="false" decoding="async" loading="lazy" />
+                </a>
+                <a class="portfolio-card" href="./projects/project-09.html" data-project="8" data-coming-soon="true" aria-label="查看百度 AI 短剧分镜生成 Agent 项目">
+                  <img src="./卡通人物/未命名文件夹/Group%2032.png" width="1200" height="1600" alt="百度 AI 短剧分镜生成 Agent 项目封面" draggable="false" decoding="async" loading="lazy" />
+                </a>
+              </div>
+            </div>
+
+            <div class="portfolio-controls" aria-label="作品轮播控制">
+              <button class="portfolio-control" id="portfolio-prev" type="button" aria-label="上一个作品">←</button>
+              <span class="portfolio-count" id="portfolio-count" aria-hidden="true">01 / 09</span>
+              <button class="portfolio-control" id="portfolio-next" type="button" aria-label="下一个作品">→</button>
+              <button class="portfolio-control" id="portfolio-toggle" type="button" aria-pressed="false" aria-label="暂停自动轮播">Pause</button>
+            </div>
+            <p class="sr-only" id="portfolio-status" aria-live="polite" aria-atomic="true"></p>
+            <div class="portfolio-toast" id="portfolio-toast" role="status" aria-live="polite"></div>
+          </div>
+        </section>
+
+        <section class="content-section" id="contact" aria-labelledby="contact-title">
+          <div class="contact-copy">
+            <p class="section-kicker">03 / SAY HELLO</p>
+            <h2 id="contact-title">Have an idea?<br /><em>Let’s talk.</em></h2>
+            <div class="contact-links">
+              <a href="mailto:241312035@csu.edu.cn">241312035@csu.edu.cn ↗</a>
+              <a href="tel:+8613972544110">139 7254 4110 ↗</a>
+              <a href="./public/jean-zhu-resume.pdf" download>下载简历 ↓</a>
+            </div>
+          </div>
+          <div class="contact-visual" aria-hidden="true">
+            <video
+              id="snowball-video"
+              autoplay
+              muted
+              loop
+              playsinline
+              preload="metadata"
+              poster="./assets/jean-home/throw-snowball-poster.png"
+            >
+              <source src="./assets/jean-home/throw-snowball-transparent.webm" type="video/webm; codecs=vp9" />
+            </video>
+          </div>
+        </section>
+
+        <footer>
+          <span>© 2026 JEAN ZHU</span>
+          <span>CHANGSHA · CENTRAL SOUTH UNIVERSITY</span>
+        </footer>
+      </div>
+    </main>
+
+    <audio id="background-music" loop preload="metadata">
+      <source src="./assets/jean-home/home-music.m4a" type="audio/mp4" />
+    </audio>
+
+    <div class="music-toggle" id="music-toggle" role="status" aria-live="polite">HOVER FOR SOUND</div>
+
+    <section class="project-viewer" id="project-viewer" role="dialog" aria-modal="true" aria-hidden="true" aria-label="作品详情">
+      <header class="project-viewer__bar">
+        <button class="project-viewer__close" id="project-viewer-close" type="button" aria-label="关闭作品详情并返回作品集">← <span>返回作品集</span></button>
+        <p class="project-viewer__title" id="project-viewer-title">Project detail</p>
+        <p class="project-viewer__count" id="project-viewer-count">01 / 09</p>
+      </header>
+      <div class="project-viewer__canvas">
+        <div class="project-viewer__loading" aria-live="polite">Loading project</div>
+        <iframe id="project-viewer-frame" title="作品详情" loading="eager"></iframe>
+      </div>
+    </section>
+
+    <div class="assistant-root" id="digital-jean">
+      <section
+        class="assistant-panel"
+        id="assistant-panel"
+        role="dialog"
+        aria-label="Jean 的数字分身"
+        aria-modal="false"
+        aria-hidden="true"
+      >
+        <header class="assistant-header">
+          <div>
+            <strong>JEAN · 数字分身</strong>
+            <small>预设知识库 · 后续可接入 Agent</small>
+          </div>
+          <button class="assistant-close" id="assistant-close" type="button" aria-label="关闭数字分身">×</button>
+        </header>
+        <div class="assistant-messages" id="assistant-messages" aria-live="polite">
+          <p class="message message--assistant">Hi，我是 Jean 的数字分身。你可以问我关于她的经历、项目和职业方向。</p>
+        </div>
+        <div class="quick-questions" aria-label="推荐问题">
+          <button type="button" data-question="你的核心优势是什么？">核心优势</button>
+          <button type="button" data-question="你做过哪些 AI 项目？">AI 项目</button>
+          <button type="button" data-question="为什么从城市设计做产品？">转型原因</button>
+          <button type="button" data-question="怎么联系 Jean？">联系方式</button>
+        </div>
+        <form class="assistant-form" id="assistant-form">
+          <label class="sr-only" for="assistant-input">输入想问 Jean 的问题</label>
+          <input id="assistant-input" type="text" autocomplete="off" placeholder="问问关于 Jean 的事…" />
+          <button id="assistant-send" type="submit" aria-label="发送问题" disabled>↑</button>
+        </form>
+      </section>
+
+      <button
+        class="assistant-launcher"
+        id="assistant-launcher"
+        type="button"
+        aria-controls="assistant-panel"
+        aria-expanded="false"
+        aria-label="打开数字分身对话"
+      >
+        <img
+          class="assistant-avatar"
+          src="./assets/jean-home/digital-jean.png"
+          width="200"
+          height="266"
+          alt=""
+          aria-hidden="true"
+        />
+      </button>
+      <button
+        class="assistant-greeting"
+        id="assistant-greeting"
+        type="button"
+        aria-controls="assistant-panel"
+        aria-expanded="false"
+      >你好，我是Jean的数字分身，来跟我聊聊吧～</button>
+    </div>
+
+    <script>
+      (() => {
+        const answers = {
+          "你的核心优势是什么？":
+            "Jean 的优势是把专业工作流拆解成清晰的产品机制。她既有城市设计的系统训练，也有百度、爱奇艺和芒果 TV 的 AI 产品实践，擅长从真实场景出发设计 Agent、评测体系与可持续迭代的流程。",
+          "你做过哪些 AI 项目？":
+            "她的代表项目包括短剧成片审查 Agent、AI 视频武打戏 Agent，以及博物馆讲解数字人。项目覆盖多模型审查、专业影视工作流、知识库与 CMS。",
+          "为什么从城市设计做产品？":
+            "城市设计训练让她习惯观察系统、空间与人的关系；产品工作让这些观察进一步变成流程、规则和真实可用的体验。两者都在把复杂问题组织成可协作、可落地的方案。",
+          "怎么联系 Jean？":
+            "可以发邮件到 241312035@csu.edu.cn，或拨打 13972544110。她目前关注 AI 产品、内容创作工具与专业工作流方向的机会。"
+        };
+
+        const panel = document.querySelector("#assistant-panel");
+        const launcher = document.querySelector("#assistant-launcher");
+        const greeting = document.querySelector("#assistant-greeting");
+        const closeButton = document.querySelector("#assistant-close");
+        const messages = document.querySelector("#assistant-messages");
+        const form = document.querySelector("#assistant-form");
+        const input = document.querySelector("#assistant-input");
+        const send = document.querySelector("#assistant-send");
+        const menuButton = document.querySelector("#menu-button");
+        const navLinks = document.querySelector("#nav-links");
+        const topbar = document.querySelector("#topbar");
+        const home = document.querySelector("#home");
+        const characterStage = document.querySelector(".character-stage");
+        const video = document.querySelector("#character-video");
+        const snowballVideo = document.querySelector("#snowball-video");
+        const music = document.querySelector("#background-music");
+        const musicToggle = document.querySelector("#music-toggle");
+        const skillCards = [...document.querySelectorAll("[data-skill-card]")];
+        const portfolioStage = document.querySelector("#portfolio-stage");
+        const portfolioRing = document.querySelector("#portfolio-ring");
+        const portfolioCards = [...document.querySelectorAll(".portfolio-card")];
+        const portfolioPrevious = document.querySelector("#portfolio-prev");
+        const portfolioNext = document.querySelector("#portfolio-next");
+        const portfolioToggle = document.querySelector("#portfolio-toggle");
+        const portfolioCount = document.querySelector("#portfolio-count");
+        const portfolioStatus = document.querySelector("#portfolio-status");
+        const portfolioToast = document.querySelector("#portfolio-toast");
+        const projectViewer = document.querySelector("#project-viewer");
+        const projectViewerClose = document.querySelector("#project-viewer-close");
+        const projectViewerFrame = document.querySelector("#project-viewer-frame");
+        const projectViewerTitle = document.querySelector("#project-viewer-title");
+        const projectViewerCount = document.querySelector("#project-viewer-count");
+        const pageMain = document.querySelector("main");
+        const assistantRoot = document.querySelector("#digital-jean");
+        let projectViewerActiveIndex = null;
+        let projectViewerLastTrigger = null;
+
+        const setAssistant = (open) => {
+          panel.classList.toggle("is-open", open);
+          panel.setAttribute("aria-hidden", String(!open));
+          greeting.setAttribute("aria-expanded", String(open));
+          launcher.setAttribute("aria-expanded", String(open));
+          launcher.setAttribute("aria-label", open ? "收起数字分身对话" : "打开数字分身对话");
+          if (open) window.setTimeout(() => input.focus(), 50);
+        };
+
+        const setGreeting = (hidden) => {
+          greeting.classList.toggle("is-hidden", hidden);
+          greeting.setAttribute("aria-hidden", String(hidden));
+        };
+
+        const syncMusicToggle = () => {
+          const playing = !music.paused;
+          musicToggle.classList.toggle("is-playing", playing);
+          musicToggle.textContent = playing ? "SOUND ON" : "HOVER FOR SOUND";
+          characterStage.classList.toggle("is-sounding", playing);
+        };
+
+        let homeSoundIsAvailable = window.scrollY < window.innerHeight * 0.5;
+        let characterIsHovered = false;
+        const soundHitCanvas = document.createElement("canvas");
+        soundHitCanvas.width = 1;
+        soundHitCanvas.height = 1;
+        const soundHitContext = soundHitCanvas.getContext("2d", { willReadFrequently: true });
+
+        const pauseMusic = () => {
+          music.pause();
+          syncMusicToggle();
+        };
+
+        const playCharacterMusic = async () => {
+          if (!homeSoundIsAvailable || !characterIsHovered) return;
+          try {
+            music.volume = 0.28;
+            await music.play();
+          } catch (_) {
+            // Browsers can require the first real user gesture before sound may start.
+          }
+          syncMusicToggle();
+        };
+
+        const pointerHitsVisibleCharacter = (event) => {
+          if (!soundHitContext || !video.videoWidth || !video.videoHeight) return true;
+          const bounds = video.getBoundingClientRect();
+          const scale = Math.min(bounds.width / video.videoWidth, bounds.height / video.videoHeight);
+          const renderedWidth = video.videoWidth * scale;
+          const renderedHeight = video.videoHeight * scale;
+          const offsetX = (bounds.width - renderedWidth) / 2;
+          const offsetY = bounds.height - renderedHeight;
+          const localX = event.clientX - bounds.left - offsetX;
+          const localY = event.clientY - bounds.top - offsetY;
+          if (localX < 0 || localY < 0 || localX >= renderedWidth || localY >= renderedHeight) return false;
+
+          try {
+            soundHitContext.clearRect(0, 0, 1, 1);
+            soundHitContext.drawImage(video, localX / scale, localY / scale, 1, 1, 0, 0, 1, 1);
+            return soundHitContext.getImageData(0, 0, 1, 1).data[3] > 24;
+          } catch (_) {
+            return true;
+          }
+        };
+
+        const addMessage = (role, text) => {
+          const bubble = document.createElement("p");
+          bubble.className = `message message--${role}`;
+          bubble.textContent = text;
+          messages.appendChild(bubble);
+          messages.scrollTop = messages.scrollHeight;
+        };
+
+        const localAnswer = (question) => {
+          if (answers[question]) return answers[question];
+          if (/优势|擅长|能力/.test(question)) return answers["你的核心优势是什么？"];
+          if (/项目|作品|经历|百度|爱奇艺|芒果/.test(question)) return answers["你做过哪些 AI 项目？"];
+          if (/城市|规划|转型|为什么/.test(question)) return answers["为什么从城市设计做产品？"];
+          if (/联系|邮箱|电话|简历|合作/.test(question)) return answers["怎么联系 Jean？"];
+          return "这个版本先回答预设的个人资料问题。你可以问我 Jean 的核心优势、AI 项目、转型经历或联系方式；后续这里可以直接接入 Agent。";
+        };
+
+        const getAnswer = async (question) => {
+          // Future Agent hook: assign window.JeanAgent.ask to replace the local preset knowledge base.
+          if (window.JeanAgent && typeof window.JeanAgent.ask === "function") {
+            return window.JeanAgent.ask(question);
+          }
+          return localAnswer(question);
+        };
+
+        const ask = async (question) => {
+          const clean = question.trim();
+          if (!clean) return;
+          addMessage("user", clean);
+          input.value = "";
+          send.disabled = true;
+          const reply = await getAnswer(clean);
+          addMessage("assistant", reply);
+        };
+
+        launcher.addEventListener("click", () => {
+          setAssistant(!panel.classList.contains("is-open"));
+        });
+        greeting.addEventListener("click", () => {
+          setAssistant(true);
+        });
+        closeButton.addEventListener("click", () => setAssistant(false));
+        document.querySelectorAll("[data-open-assistant]").forEach((button) => {
+          button.addEventListener("click", () => {
+            setAssistant(true);
+            navLinks.classList.remove("is-open");
+            menuButton.setAttribute("aria-expanded", "false");
+          });
+        });
+        document.querySelectorAll("[data-question]").forEach((button) => {
+          button.addEventListener("click", () => ask(button.dataset.question));
+        });
+
+        input.addEventListener("input", () => { send.disabled = !input.value.trim(); });
+        form.addEventListener("submit", (event) => {
+          event.preventDefault();
+          ask(input.value);
+        });
+
+        music.addEventListener("play", syncMusicToggle);
+        music.addEventListener("pause", syncMusicToggle);
+        characterStage.addEventListener("pointermove", (event) => {
+          if (event.pointerType && event.pointerType !== "mouse" && event.pointerType !== "pen") return;
+          const hitsCharacter = pointerHitsVisibleCharacter(event);
+          if (hitsCharacter === characterIsHovered) return;
+          characterIsHovered = hitsCharacter;
+          if (characterIsHovered) playCharacterMusic();
+          else pauseMusic();
+        });
+        characterStage.addEventListener("pointerleave", () => {
+          characterIsHovered = false;
+          pauseMusic();
+        });
+
+        const homeSoundObserver = new IntersectionObserver(
+          ([entry]) => {
+            homeSoundIsAvailable = entry.isIntersecting && entry.intersectionRatio >= 0.5;
+            if (!homeSoundIsAvailable) pauseMusic();
+            else if (characterIsHovered) playCharacterMusic();
+          },
+          { threshold: [0, 0.5, 1] }
+        );
+        homeSoundObserver.observe(home);
+
+        let lastScrollPosition = window.scrollY;
+        let wasAtHome = window.scrollY <= 32;
+        window.addEventListener("scroll", () => {
+          const currentScrollPosition = window.scrollY;
+          const isAtHome = currentScrollPosition <= 32;
+          if (currentScrollPosition > lastScrollPosition + 3) setGreeting(true);
+          if (isAtHome && !wasAtHome) setGreeting(false);
+          wasAtHome = isAtHome;
+          lastScrollPosition = currentScrollPosition;
+        }, { passive: true });
+
+        document.addEventListener("keydown", (event) => {
+          if (event.key === "Escape") {
+            if (projectViewer.classList.contains("is-open")) {
+              closeProjectViewer(true);
+              return;
+            }
+            setAssistant(false);
+            navLinks.classList.remove("is-open");
+            menuButton.setAttribute("aria-expanded", "false");
+          }
+        });
+
+        menuButton.addEventListener("click", () => {
+          const open = !navLinks.classList.contains("is-open");
+          navLinks.classList.toggle("is-open", open);
+          menuButton.setAttribute("aria-expanded", String(open));
+          menuButton.setAttribute("aria-label", open ? "关闭导航" : "打开导航");
+        });
+
+        navLinks.querySelectorAll("a").forEach((link) => {
+          link.addEventListener("click", (event) => {
+            const target = document.querySelector(link.getAttribute("href"));
+            if (target) {
+              event.preventDefault();
+              window.history.pushState(null, "", link.getAttribute("href"));
+              const scrollBehavior = motionPreference.matches ? "auto" : "smooth";
+              if (target === home) window.scrollTo({ top: 0, behavior: scrollBehavior });
+              else target.scrollIntoView({ behavior: scrollBehavior, block: "start" });
+            }
+            navLinks.classList.remove("is-open");
+            menuButton.setAttribute("aria-expanded", "false");
+          });
+        });
+
+        window.addEventListener("load", () => {
+          const hash = window.location.hash;
+          const target = hash ? document.querySelector(hash) : null;
+          if (target && hash !== "#home") {
+            window.requestAnimationFrame(() => target.scrollIntoView({ block: "start" }));
+          }
+        }, { once: true });
+
+        if (!video.canPlayType('video/webm; codecs="vp9"')) video.classList.add("video-fallback");
+
+        const motionPreference = window.matchMedia("(prefers-reduced-motion: reduce)");
+        const ambientVideos = [video, snowballVideo].filter(Boolean);
+        const syncMotionPreference = () => {
+          if (motionPreference.matches) {
+            ambientVideos.forEach((item) => {
+              item.pause();
+              item.currentTime = 0;
+            });
+          } else {
+            ambientVideos.forEach((item) => item.play().catch(() => {}));
+          }
+        };
+        syncMotionPreference();
+        motionPreference.addEventListener?.("change", syncMotionPreference);
+
+        const skillPointerPreference = window.matchMedia("(hover: hover) and (pointer: fine)");
+        const skillParallaxFrames = new WeakMap();
+        const skillPointerPositions = new WeakMap();
+        const resetSkillCard = (card) => {
+          const frame = skillParallaxFrames.get(card);
+          if (frame) window.cancelAnimationFrame(frame);
+          skillParallaxFrames.delete(card);
+          skillPointerPositions.delete(card);
+          card.classList.remove("is-parallax-active");
+          card.style.setProperty("--card-rotate-x", "0deg");
+          card.style.setProperty("--card-rotate-y", "0deg");
+          card.style.setProperty("--card-shift-x", "0px");
+          card.style.setProperty("--shine-x", "50%");
+          card.style.setProperty("--shine-y", "16%");
+        };
+
+        const resetSkillCards = () => skillCards.forEach(resetSkillCard);
+
+        skillCards.forEach((card) => {
+          card.addEventListener("pointermove", (event) => {
+            if (
+              motionPreference.matches ||
+              !skillPointerPreference.matches ||
+              (event.pointerType && event.pointerType !== "mouse")
+            ) {
+              resetSkillCard(card);
+              return;
+            }
+
+            skillPointerPositions.set(card, { x: event.clientX, y: event.clientY });
+            if (skillParallaxFrames.has(card)) return;
+
+            const frame = window.requestAnimationFrame(() => {
+              skillParallaxFrames.delete(card);
+              const pointer = skillPointerPositions.get(card);
+              if (!pointer) return;
+
+              const bounds = card.getBoundingClientRect();
+              const x = Math.max(0, Math.min(1, (pointer.x - bounds.left) / bounds.width));
+              const y = Math.max(0, Math.min(1, (pointer.y - bounds.top) / bounds.height));
+              const horizontal = (x - 0.5) * 2;
+              const vertical = (y - 0.5) * 2;
+
+              card.classList.add("is-parallax-active");
+              card.style.setProperty("--card-rotate-x", `${(-vertical * 1.15).toFixed(2)}deg`);
+              card.style.setProperty("--card-rotate-y", `${(horizontal * 2.35).toFixed(2)}deg`);
+              card.style.setProperty("--card-shift-x", `${(horizontal * 2.2).toFixed(2)}px`);
+              card.style.setProperty("--shine-x", `${(x * 100).toFixed(1)}%`);
+              card.style.setProperty("--shine-y", `${(y * 100).toFixed(1)}%`);
+            });
+            skillParallaxFrames.set(card, frame);
+          });
+          card.addEventListener("pointerleave", () => resetSkillCard(card));
+          card.addEventListener("pointercancel", () => resetSkillCard(card));
+        });
+
+        motionPreference.addEventListener?.("change", resetSkillCards);
+        skillPointerPreference.addEventListener?.("change", resetSkillCards);
+
+        const portfolioTitles = [
+          "Breath Arts Center Design",
+          "Red-Roof Memories",
+          "Retracing the Past: Historic District",
+          "Sustainable Future City Design",
+          "Smart Market Research Design",
+          "爱奇艺 AI 影视创作 Agent",
+          "芒果山海 App 博物馆数字人",
+          "百度 AI 漫剧成片审查 Agent",
+          "百度 AI 短剧分镜生成 Agent"
+        ];
+        const portfolioStep = 360 / portfolioCards.length;
+        const portfolioAutoSpeed = -5.2;
+        let activeProject = 0;
+        let portfolioRotation = 0;
+        let portfolioVelocity = 0;
+        let portfolioTargetRotation = null;
+        let portfolioFrame = 0;
+        let portfolioLastFrame = performance.now();
+        let portfolioLastA11ySync = 0;
+        let portfolioUserPaused = motionPreference.matches;
+        let portfolioInView = false;
+        let portfolioPointerPending = false;
+        let portfolioDragging = false;
+        let portfolioPointerId = null;
+        let portfolioLastPointerX = 0;
+        let portfolioLastPointerTime = 0;
+        let portfolioDragDistance = 0;
+        let portfolioDidDrag = false;
+        let portfolioToastTimer = 0;
+        const portfolioHoveredCards = new Set();
+
+        const wrapProject = (index) => (index + portfolioCards.length) % portfolioCards.length;
+
+        const normalizedAngle = (value) => ((value % 360) + 360) % 360;
+
+        const renderPortfolioRing = () => {
+          portfolioRing.style.setProperty("--ring-rotation", `${portfolioRotation}deg`);
+        };
+
+        const nearestProject = () => {
+          let nearestIndex = 0;
+          let nearestDistance = Infinity;
+          portfolioCards.forEach((card, index) => {
+            const angle = normalizedAngle(portfolioRotation + index * portfolioStep);
+            const distance = Math.min(angle, 360 - angle);
+            if (distance < nearestDistance) {
+              nearestDistance = distance;
+              nearestIndex = index;
+            }
+          });
+          return nearestIndex;
+        };
+
+        const updatePortfolioStatus = (index, announce = false) => {
+          activeProject = wrapProject(index);
+          portfolioCards.forEach((card, cardIndex) => {
+            const isActive = cardIndex === activeProject;
+            card.setAttribute("aria-current", String(isActive));
+            card.tabIndex = isActive ? 0 : -1;
+          });
+          portfolioCount.textContent = `${String(activeProject + 1).padStart(2, "0")} / ${String(portfolioCards.length).padStart(2, "0")}`;
+          if (announce) portfolioStatus.textContent = `当前作品：${portfolioTitles[activeProject]}，第 ${activeProject + 1} 项，共 ${portfolioCards.length} 项`;
+        };
+
+        const syncNearestProject = (announce = false) => {
+          if (portfolioHoveredCards.size) {
+            const hoveredCard = portfolioHoveredCards.values().next().value;
+            updatePortfolioStatus(Number(hoveredCard.dataset.project), announce);
+            return;
+          }
+          updatePortfolioStatus(nearestProject(), announce);
+        };
+
+        const syncPortfolioToggle = (announce = false) => {
+          portfolioToggle.textContent = portfolioUserPaused ? "Play" : "Pause";
+          portfolioToggle.setAttribute("aria-pressed", String(portfolioUserPaused));
+          portfolioToggle.setAttribute("aria-label", portfolioUserPaused ? "播放自动旋转" : "暂停自动旋转");
+          if (announce) portfolioStatus.textContent = portfolioUserPaused ? "作品环自动旋转已暂停" : "作品环自动旋转已开始";
+        };
+
+        const setPortfolioPaused = (paused, announce = true) => {
+          portfolioUserPaused = paused;
+          if (paused) portfolioVelocity = 0;
+          syncPortfolioToggle(announce);
+        };
+
+        const syncEmbeddedProject = () => {
+          try {
+            const frameWindow = projectViewerFrame.contentWindow;
+            const frameDocument = projectViewerFrame.contentDocument;
+            const pathname = frameWindow.location.pathname;
+            const match = pathname.match(/project-(0[1-8])\.html$/);
+            if (match) {
+              const index = Number(match[1]) - 1;
+              projectViewerActiveIndex = index;
+              projectViewerTitle.textContent = portfolioTitles[index];
+              projectViewerCount.textContent = `${match[1]} / 09`;
+              projectViewerFrame.title = `${portfolioTitles[index]} 作品详情`;
+              if (projectViewer.classList.contains("is-open") && window.location.hash !== `#project-${match[1]}`) {
+                window.history.replaceState(
+                  { jeanProjectViewer: true, project: index },
+                  "",
+                  `#project-${match[1]}`
+                );
+              }
+            }
+
+            const embeddedStyle = frameDocument.createElement("style");
+            embeddedStyle.dataset.viewerOverride = "true";
+            embeddedStyle.textContent = `
+              .project-header, .portfolio-back { display: none !important; }
+              .project-hero { padding-top: 20px !important; }
+              @media (max-width: 900px) { .project-hero { padding-top: 14px !important; } }
+            `;
+            if (!frameDocument.querySelector("style[data-viewer-override]")) frameDocument.head.appendChild(embeddedStyle);
+
+            frameDocument.querySelectorAll('a[href*="index.html#work"]').forEach((link) => {
+              link.addEventListener("click", (event) => {
+                event.preventDefault();
+                closeProjectViewer(true);
+              });
+            });
+          } catch (_) {
+            // The detail pages are same-origin in this portfolio; fail gracefully if the browser blocks inspection.
+          }
+          projectViewer.classList.add("is-loaded");
+        };
+
+        const openProjectViewer = (card, index, updateHistory = true) => {
+          const projectIndex = wrapProject(index);
+          projectViewerActiveIndex = projectIndex;
+          projectViewerLastTrigger = card;
+          projectViewerTitle.textContent = portfolioTitles[projectIndex];
+          projectViewerCount.textContent = `${String(projectIndex + 1).padStart(2, "0")} / 09`;
+          projectViewerFrame.title = `${portfolioTitles[projectIndex]} 作品详情`;
+          projectViewer.classList.remove("is-closing");
+          projectViewer.classList.remove("is-loaded");
+          projectViewer.classList.add("is-open");
+          projectViewer.setAttribute("aria-hidden", "false");
+          document.body.classList.add("project-viewer-open");
+          pageMain.setAttribute("inert", "");
+          assistantRoot.setAttribute("inert", "");
+          setPortfolioPaused(true, false);
+          pauseMusic();
+          setGreeting(true);
+
+          const target = new URL(card.getAttribute("href"), window.location.href);
+          target.searchParams.set("embed", "1");
+          projectViewerFrame.src = target.href;
+          if (updateHistory) {
+            window.history.pushState(
+              { jeanProjectViewer: true, project: projectIndex },
+              "",
+              `#project-${String(projectIndex + 1).padStart(2, "0")}`
+            );
+          }
+          window.setTimeout(() => projectViewerClose.focus(), motionPreference.matches ? 0 : 260);
+        };
+
+        const closeProjectViewer = (updateHistory = true) => {
+          if (!projectViewer.classList.contains("is-open")) return;
+          // Close the viewer itself instead of traversing the joint browser/iframe
+          // history. An iframe navigation can otherwise create a blank intermediate
+          // state before the parent page receives its own popstate event.
+          projectViewer.classList.add("is-closing");
+          projectViewer.classList.remove("is-open", "is-loaded");
+          projectViewer.setAttribute("aria-hidden", "true");
+          document.body.classList.remove("project-viewer-open");
+          pageMain.removeAttribute("inert");
+          assistantRoot.removeAttribute("inert");
+          const lastTrigger = projectViewerLastTrigger;
+          projectViewerActiveIndex = null;
+          projectViewerFrame.removeAttribute("src");
+          if (updateHistory) window.history.replaceState(null, "", "#work");
+          lastTrigger?.focus({ preventScroll: true });
+          window.requestAnimationFrame(() => projectViewer.classList.remove("is-closing"));
+        };
+
+        projectViewerFrame.addEventListener("load", syncEmbeddedProject);
+        projectViewerClose.addEventListener("click", () => closeProjectViewer(true));
+        window.addEventListener("popstate", () => {
+          const match = window.location.hash.match(/^#project-(0[1-8])$/);
+          if (match) {
+            const index = Number(match[1]) - 1;
+            if (projectViewerActiveIndex !== index || !projectViewer.classList.contains("is-open")) {
+              openProjectViewer(portfolioCards[index], index, false);
+            }
+          } else {
+            closeProjectViewer(false);
+          }
+        });
+
+        const showPortfolioToast = () => {
+          window.clearTimeout(portfolioToastTimer);
+          portfolioToast.textContent = "";
+          portfolioToast.classList.add("is-visible");
+          window.requestAnimationFrame(() => {
+            portfolioToast.textContent = `“${portfolioTitles[activeProject]}”详情页即将上线`;
+          });
+          portfolioToastTimer = window.setTimeout(() => portfolioToast.classList.remove("is-visible"), 3200);
+        };
+
+        const rotateToProject = (index, announce = true) => {
+          const projectIndex = wrapProject(index);
+          const targetBase = -projectIndex * portfolioStep;
+          const shortestDelta = ((targetBase - portfolioRotation + 540) % 360) - 180;
+          portfolioTargetRotation = portfolioRotation + shortestDelta;
+          portfolioVelocity = 0;
+          updatePortfolioStatus(projectIndex, announce);
+        };
+
+        const portfolioShouldAutoRotate = () => (
+          portfolioInView &&
+          !document.hidden &&
+          !motionPreference.matches &&
+          !portfolioUserPaused &&
+          !portfolioPointerPending &&
+          !portfolioDragging &&
+          !portfolioHoveredCards.size &&
+          !portfolioStage.matches(":focus-within")
+        );
+
+        const animatePortfolioRing = (time) => {
+          const delta = Math.min(50, Math.max(0, time - portfolioLastFrame));
+          portfolioLastFrame = time;
+
+          if (!portfolioDragging && portfolioTargetRotation !== null) {
+            const difference = portfolioTargetRotation - portfolioRotation;
+            portfolioRotation += difference * Math.min(1, delta / 115);
+            if (Math.abs(difference) < 0.04) {
+              portfolioRotation = portfolioTargetRotation;
+              portfolioTargetRotation = null;
+            }
+          } else if (!portfolioDragging && Math.abs(portfolioVelocity) > 0.002) {
+            portfolioRotation += portfolioVelocity * delta;
+            portfolioVelocity *= Math.pow(0.91, delta / 16.67);
+            if (Math.abs(portfolioVelocity) < 0.002) portfolioVelocity = 0;
+          } else if (portfolioShouldAutoRotate()) {
+            portfolioRotation += portfolioAutoSpeed * (delta / 1000);
+          }
+
+          renderPortfolioRing();
+          if (time - portfolioLastA11ySync > 140) {
+            syncNearestProject(false);
+            portfolioLastA11ySync = time;
+          }
+          portfolioFrame = window.requestAnimationFrame(animatePortfolioRing);
+        };
+
+        const startPortfolioAnimation = () => {
+          if (portfolioFrame || !portfolioInView || document.hidden) return;
+          portfolioLastFrame = performance.now();
+          portfolioFrame = window.requestAnimationFrame(animatePortfolioRing);
+        };
+
+        const stopPortfolioAnimation = () => {
+          window.cancelAnimationFrame(portfolioFrame);
+          portfolioFrame = 0;
+        };
+
+        portfolioCards.forEach((card, index) => {
+          card.style.setProperty("--card-angle", `${index * portfolioStep}deg`);
+          card.setAttribute("draggable", "false");
+          card.querySelector("img")?.setAttribute("draggable", "false");
+          card.addEventListener("dragstart", (event) => event.preventDefault());
+          card.addEventListener("pointerenter", () => {
+            portfolioHoveredCards.add(card);
+            portfolioVelocity = 0;
+            portfolioTargetRotation = null;
+            updatePortfolioStatus(index, false);
+          });
+          card.addEventListener("pointerleave", () => {
+            portfolioHoveredCards.delete(card);
+          });
+          card.addEventListener("click", (event) => {
+            if (portfolioDidDrag) {
+              event.preventDefault();
+              portfolioDidDrag = false;
+              return;
+            }
+            if (card.dataset.comingSoon === "true") {
+              event.preventDefault();
+              rotateToProject(index, true);
+              showPortfolioToast();
+            } else {
+              event.preventDefault();
+              openProjectViewer(card, index, true);
+            }
+            if (event.detail > 0) window.setTimeout(() => card.blur(), 0);
+          });
+          card.addEventListener("focus", () => {
+            portfolioVelocity = 0;
+            updatePortfolioStatus(index, false);
+          });
+        });
+
+        portfolioPrevious.addEventListener("click", () => {
+          setPortfolioPaused(true, false);
+          rotateToProject(activeProject - 1);
+        });
+        portfolioNext.addEventListener("click", () => {
+          setPortfolioPaused(true, false);
+          rotateToProject(activeProject + 1);
+        });
+        portfolioToggle.addEventListener("click", () => setPortfolioPaused(!portfolioUserPaused));
+
+        portfolioStage.addEventListener("keydown", (event) => {
+          if (event.key !== "ArrowLeft" && event.key !== "ArrowRight") return;
+          event.preventDefault();
+          rotateToProject(activeProject + (event.key === "ArrowRight" ? 1 : -1));
+          portfolioCards[activeProject].focus({ preventScroll: true });
+        });
+
+        portfolioStage.addEventListener("pointerdown", (event) => {
+          if (event.pointerType === "mouse" && event.button !== 0) return;
+          portfolioPointerPending = true;
+          portfolioDragging = false;
+          portfolioPointerId = event.pointerId;
+          portfolioLastPointerX = event.clientX;
+          portfolioLastPointerTime = event.timeStamp;
+          portfolioDragDistance = 0;
+          portfolioDidDrag = false;
+          portfolioVelocity = 0;
+          portfolioTargetRotation = null;
+        });
+
+        portfolioStage.addEventListener("pointermove", (event) => {
+          if ((!portfolioPointerPending && !portfolioDragging) || portfolioPointerId !== event.pointerId) return;
+          const deltaX = event.clientX - portfolioLastPointerX;
+          const deltaTime = Math.max(8, event.timeStamp - portfolioLastPointerTime);
+          portfolioDragDistance += Math.abs(deltaX);
+          portfolioLastPointerX = event.clientX;
+          portfolioLastPointerTime = event.timeStamp;
+
+          // Keep ordinary card clicks native. The stage only captures the pointer
+          // after an intentional horizontal drag has clearly started.
+          if (!portfolioDragging && portfolioDragDistance > 12) {
+            portfolioPointerPending = false;
+            portfolioDragging = true;
+            portfolioDidDrag = true;
+            portfolioStage.setPointerCapture?.(event.pointerId);
+            portfolioStage.classList.add("is-dragging");
+          }
+          if (!portfolioDragging) return;
+
+          event.preventDefault();
+
+          const rotationDelta = deltaX * 0.19;
+          portfolioRotation += rotationDelta;
+          const instantVelocity = rotationDelta / deltaTime;
+          portfolioVelocity = portfolioVelocity * 0.2 + instantVelocity * 0.8;
+          renderPortfolioRing();
+        });
+
+        portfolioStage.addEventListener("pointerup", (event) => {
+          if ((!portfolioPointerPending && !portfolioDragging) || portfolioPointerId !== event.pointerId) return;
+          const wasDragging = portfolioDragging;
+          portfolioPointerPending = false;
+          portfolioDragging = false;
+          portfolioPointerId = null;
+          portfolioStage.classList.remove("is-dragging");
+          if (!wasDragging || portfolioHoveredCards.size || motionPreference.matches) portfolioVelocity = 0;
+          if (wasDragging) syncNearestProject(true);
+          window.setTimeout(() => {
+            portfolioDidDrag = false;
+          }, 0);
+        });
+
+        portfolioStage.addEventListener("pointercancel", () => {
+          portfolioPointerPending = false;
+          portfolioDragging = false;
+          portfolioPointerId = null;
+          portfolioDidDrag = false;
+          portfolioVelocity = 0;
+          portfolioStage.classList.remove("is-dragging");
+        });
+
+        portfolioStage.addEventListener("wheel", (event) => {
+          if (Math.abs(event.deltaX) <= Math.abs(event.deltaY) || Math.abs(event.deltaX) < 2) return;
+          event.preventDefault();
+          portfolioTargetRotation = null;
+          portfolioRotation -= event.deltaX * 0.08;
+          portfolioVelocity = -event.deltaX * 0.0022;
+          renderPortfolioRing();
+        }, { passive: false });
+
+        document.addEventListener("visibilitychange", () => {
+          if (document.hidden) stopPortfolioAnimation();
+          else startPortfolioAnimation();
+        });
+        motionPreference.addEventListener?.("change", () => {
+          portfolioVelocity = 0;
+          portfolioTargetRotation = null;
+          if (motionPreference.matches) portfolioUserPaused = true;
+          syncPortfolioToggle(false);
+        });
+
+        const portfolioObserver = new IntersectionObserver(
+          ([entry]) => {
+            portfolioInView = entry.isIntersecting;
+            if (portfolioInView) startPortfolioAnimation();
+            else stopPortfolioAnimation();
+          },
+          { threshold: 0.12 }
+        );
+        portfolioObserver.observe(document.querySelector("#work"));
+
+        renderPortfolioRing();
+        updatePortfolioStatus(0, false);
+        syncPortfolioToggle(false);
+
+        const initialProjectMatch = window.location.hash.match(/^#project-(0[1-8])$/);
+        if (initialProjectMatch) {
+          const initialProjectIndex = Number(initialProjectMatch[1]) - 1;
+          window.requestAnimationFrame(() => openProjectViewer(portfolioCards[initialProjectIndex], initialProjectIndex, false));
+        }
+
+        const snowballObserver = new IntersectionObserver(
+          ([entry]) => {
+            if (motionPreference.matches || !entry.isIntersecting) {
+              snowballVideo.pause();
+            } else {
+              snowballVideo.play().catch(() => {});
+            }
+          },
+          { threshold: 0.08 }
+        );
+        snowballObserver.observe(snowballVideo);
+
+        const contentObserver = new IntersectionObserver(
+          ([entry]) => topbar.classList.toggle("is-dark", entry.isIntersecting),
+          { threshold: 0.05, rootMargin: "-70px 0px 0px 0px" }
+        );
+        contentObserver.observe(document.querySelector("#page-content"));
+      })();
+    </script>
+  </body>
+</html>

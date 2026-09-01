@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="百度 AI 漫剧成片审查 Agent：四路模型审查、动态证据复审与规模化验收工作流。" />
+    <title>08 · AI 漫剧成片审查 Agent — Jean Zhu</title>
+    <link rel="stylesheet" href="./project-shared.css" />
+  </head>
+  <body class="theme-baidu">
+    <div class="scroll-progress" aria-hidden="true"></div>
+    <header class="project-header">
+      <a class="project-header__back" href="../index.html#work" aria-label="返回作品集">← 返回作品集</a>
+      <p class="project-header__mark">Jean Zhu · Project 08 / 09</p>
+      <a class="project-header__next" href="../index.html#work"><span>返回作品集</span> ↗</a>
+    </header>
+
+    <main class="project-main">
+      <section class="project-hero">
+        <div class="project-hero__shell">
+          <div class="project-hero__copy" data-reveal>
+            <div>
+              <p class="eyebrow">AI Product · Quality Assurance</p>
+              <h1>Episode Review Agent</h1>
+              <p class="project-hero__dek">把漫剧人工审片 workflow 拆解为可追溯的多路模型链路，让问题定位从“整集判断”下钻到秒级证据。</p>
+            </div>
+            <dl class="project-facts">
+              <div><dt>Company</dt><dd>百度 MEG · AIGC</dd></div>
+              <div><dt>Role</dt><dd>AI 产品经理</dd></div>
+              <div><dt>Scope</dt><dd>策略 · Agent · 验收</dd></div>
+            </dl>
+          </div>
+          <div class="project-hero__visual agent-hero__visual">
+            <img src="../卡通人物/未命名文件夹/Group%2029.png" width="1200" height="1600" alt="百度 AI 漫剧成片审查 Agent 项目封面" />
+            <p class="project-hero__index" aria-hidden="true">08</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="project-section">
+        <div class="section-intro" data-reveal>
+          <p class="section-number">01 / Challenge</p>
+          <div><h2>规模化生产，需要规模化质检</h2><p>面对 Q3 约 1,200–1,400 集漫剧的生产计划，纯人工逐集打分、定位问题并回流生产策略，成本高且难以稳定复用。产品目标是自动输出总分、分维度得分和秒级问题证据，同时保留人工最终判断。</p></div>
+        </div>
+        <div class="metric-strip" data-reveal>
+          <article><span>Production scale</span><strong>1,400</strong><p>规划审查集数上限</p></article>
+          <article><span>Review time</span><strong>20→2m</strong><p>单集审片耗时</p></article>
+          <article><span>Key recall</span><strong>65→82%</strong><p>关键问题召回率</p></article>
+          <article><span>Accepted</span><strong>372</strong><p>累计完成成片验收</p></article>
+        </div>
+      </section>
+
+      <section class="project-section project-section--tight">
+        <div class="workflow-board" data-reveal>
+          <div class="workflow-board__head"><h3>Four-Lane Review Architecture</h3><p>Video + Script → Evidence → Decision</p></div>
+          <ol class="workflow-steps">
+            <li><b>INPUT</b><strong>视频 × 剧本</strong><small>单集 pair 对上传与任务创建</small></li>
+            <li><b>CALL A</b><strong>剧情与视觉</strong><small>人物、场景、动作与画面质量</small></li>
+            <li><b>CALL B</b><strong>声音与台词</strong><small>逐句缺失、读音与气口</small></li>
+            <li><b>CALL C</b><strong>字幕与规范</strong><small>遮挡、同步、敏感语义与版式</small></li>
+            <li><b>CALL D</b><strong>红线审查</strong><small>风险分级与总分封顶策略</small></li>
+            <li><b>OUTPUT</b><strong>评分与证据</strong><small>总分、维度分、秒区间问题</small></li>
+          </ol>
+        </div>
+      </section>
+
+      <section class="project-section project-section--tight">
+        <div class="section-intro" data-reveal>
+          <p class="section-number">02 / Evidence</p>
+          <div><h2>16 帧只负责发现，连续证据负责定案</h2><p>测试发现固定抽帧会漏掉短动作、方向错误与瞬时特效，甚至出现重复帧导致整条视觉判断失效。V13 将均匀帧降级为候选发现器，再对疑似区间动态加密复审。</p></div>
+        </div>
+        <div class="agent-timeline">
+          <article data-reveal><time>01</time><h3>可靠抽帧</h3><p>对时间戳、重复帧和黑帧做检测；异常时重抽，并提供纯视频降级通道。</p></article>
+          <article data-reveal><time>02</time><h3>候选发现</h3><p>用 4×4 宫格与剧本文本快速定位昼夜、身份、站位和动作变化的疑似区间。</p></article>
+          <article data-reveal><time>03</time><h3>动态加密</h3><p>候选片段补抽至每秒 4–8 帧，必要时直接分析连续视频，而非仅比较静态截图。</p></article>
+          <article data-reveal><time>04</time><h3>专项判定</h3><p>沿“动作发起→接触证据→受力对象→结果动作→方向合理性”建立因果链。</p></article>
+        </div>
+      </section>
+
+      <section class="project-section project-section--tight">
+        <div class="section-intro" data-reveal>
+          <p class="section-number">03 / Scoring</p>
+          <div><h2>统一评分口径，也明确模型边界</h2><p>总分从原始维度重算；中风险及以上红线直接触发封顶。字幕单/双排、遮挡与敏感语义交给模型，帧级间隔、形近字和毫秒级同步等不可靠任务退出自动判断。</p></div>
+        </div>
+        <div class="split-layout">
+          <div class="weight-bars" data-reveal>
+            <div><span>剧情节奏</span><i style="--weight: 80%"></i><b>20%</b></div>
+            <div><span>人物一致性</span><i style="--weight: 100%"></i><b>25%</b></div>
+            <div><span>视觉一致性</span><i style="--weight: 100%"></i><b>25%</b></div>
+            <div><span>画面要求</span><i style="--weight: 60%"></i><b>15%</b></div>
+            <div><span>声音与气口</span><i style="--weight: 60%"></i><b>15%</b></div>
+          </div>
+          <div class="split-layout__copy" data-reveal>
+            <p class="eyebrow">Decision policy</p><h2>证据优先，而不是多报问题</h2>
+            <p>评测集按人物、视觉、台词、剧情、动作、明星脸和基础链路分类，并加入“无问题视频”抑制虚假召回；固定回归集与盲测集分离，避免策略针对样本过拟合。</p>
+            <ul class="tag-list"><li>秒级证据</li><li>维度评分</li><li>红线封顶</li><li>盲测回归</li></ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="project-section project-section--tight">
+        <div class="section-intro" data-reveal>
+          <p class="section-number">04 / Iteration</p>
+          <div><h2>让广度、证据与稳定性在 V13 汇合</h2><p>迭代不只增加规则，而是重新编排模型擅长的任务、证据输入和错误恢复机制。</p></div>
+        </div>
+        <div class="matrix-grid">
+          <article class="matrix-card" data-reveal><div class="matrix-card__label"><span>V11 / Breadth</span><i></i></div><h3>覆盖更全</h3><p>多路串行覆盖红线、字幕、读音、画面、空间与剧情，但视觉突变和逐句台词仍有漏报。</p></article>
+          <article class="matrix-card" data-reveal><div class="matrix-card__label"><span>V12 / Evidence</span><i></i></div><h3>证据更清楚</h3><p>加入帧截图、昼夜突变和台词逐句检查，但固定抽帧不稳、审查能力存在缺口。</p></article>
+          <article class="matrix-card" data-reveal><div class="matrix-card__label"><span>V13 / Fusion</span><i></i></div><h3>链路更可靠</h3><p>保留四路审查骨架，把宫格证据加入视觉 Call，增强台词核对，并补齐超时、重试、去重与降级。</p></article>
+        </div>
+      </section>
+
+      <section class="project-section project-section--tight">
+        <div class="boundary-note" data-reveal>
+          <h2>Result & Boundary</h2>
+          <p>个人负责审片流程拆解、评测维度、四路模型编排、版本策略与验收闭环，累计支撑 372 集成片验收。页面仅展示经过抽象的产品方法、流程和已确认指标；原始视频、内部 Prompt、平台地址、生产数据与未脱敏审核样本不公开，Agent 结论始终用于辅助人工质检而非替代最终责任。</p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="project-footer" data-reveal><p>Selected work · 08 / 09</p><a href="../index.html#work"><strong>Back to portfolio</strong><span aria-hidden="true">↗</span></a></footer>
+    <dialog class="lightbox" aria-label="图片放大预览"><button class="lightbox__close" type="button" aria-label="关闭预览">×</button><img src="" alt="" /></dialog>
+    <script src="./project-shared.js"></script>
+  </body>
+</html>
